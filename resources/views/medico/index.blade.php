@@ -32,6 +32,7 @@
 
                           <td>{{$value->Identificacion}}</td>
 
+                          <td>{{$value->especialidad}}</td>
 
                           <td align="center">
                               <div class="demo-btn">

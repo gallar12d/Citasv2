@@ -8,6 +8,7 @@ use App\Departamento;
 use App\Municipio;
 use App\Especialidad;
 use Carbon\Carbon;
+use DB;
 use Amranidev\Ajaxis\Ajaxis;
 use URL;
 
@@ -38,10 +39,11 @@ class MedicoController extends Controller
     public function create()
     {
 
-      $especialidades = Especialidad::all();
 
-        $departamentos = Departamento::all();
-        return view('medico.create', compact('departamentos', 'especialidades')
+      $especialidades = Especialidad::lists('nombre', 'id');
+
+      $departamentos = Departamento::all();
+      return view('medico.create', compact('departamentos', 'especialidades')
                 );
 
 
@@ -67,10 +69,11 @@ class MedicoController extends Controller
         $medico->Celular = $input['Celular'];
         $medico->email = $input['email'];
         $array = $input['especialidad'];
-
+        $cadena_equipo = implode(", ", $array);
+      //  dd($cadena_equipo);
+        $medico->especialidad = $cadena_equipo;
         $medico->Direccion = $input['Direccion'];
-        $medico->Especialidad = serialize($array); 
-        $medico->save();
+                        $medico->save();
 
         return redirect('medico');
     }
