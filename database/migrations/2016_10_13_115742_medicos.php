@@ -30,8 +30,7 @@ class Medicos extends Migration
         $table->date('Fecha_nac');
         $table->integer('Celular');
         $table->String('email');
-        $table->integer('Especialidad_id')->unsigned();
-        $table->foreign('Especialidad_id')->references('id')->on('especialidades');
+        $table->string('especialidad');
         $table->String('Direccion');
 
         /**

@@ -26,7 +26,7 @@
            <span class='require'>*</span>
            </label>
            <div class="col-md-4">
-           <input id="Nombres" name="Nombres" type="text" placeholder="Nombres " class="form-control"/>
+           <input type="text" pattern="[A-Za-z]+" id="Nombres" name="Nombres" placeholder="Nombres " class="form-control solo_letras"  required/>
            </div>
           </div>
           <div class="form-group">
@@ -34,7 +34,7 @@
            <span class='require'>*</span>
            </label>
            <div class="col-md-4">
-           <input id="Apellidos" name="Apellidos" type="text" placeholder="Apellidos" class="form-control"/>
+           <input id="Apellidos" name="Apellidos" type="text" placeholder="Apellidos" class="form-control solo_letras"  required/>
            </div>
           </div>
 
@@ -43,7 +43,7 @@
            <span class='require'>*</span>
            </label>
            <div class="col-md-4">
-           <input id="Identificacion" name="Identificacion" type="text" placeholder="Identificacion" class="form-control"/>
+           <input type="number" id="Identificacion" name="Identificacion"  placeholder="Identificacion" class="form-control"  required/>
            </div>
           </div>
 
@@ -68,7 +68,7 @@
                  <div class="col-md-4">
                   <select id="municipio" class="form-control" name="municipio" required>
                     <option selected value="">Seleccione Municipio</option>
-                    <option value="">""</option>
+                    <option value=""></option>
                 </select>
             </div>
         </div>
@@ -77,7 +77,7 @@
         <div class="form-group">
                 <label class="col-md-3 control-label">Fecha de Nacimiento</label>
                 <div class="col-md-5">
-                   <input class="datepicker" data-date-format="mm/dd/yyyy" name="Fecha_nac">
+                   <input class="datepicker" data-date-format="dd/mm/yyyy" name="Fecha_nac"  required>
                </div>
            </div>
 
@@ -86,7 +86,7 @@
             <span class='require'>*</span>
             </label>
             <div class="col-md-4">
-            <input id="Celular" name="Celular" type="text" placeholder="Celular" class="form-control"/>
+            <input  type="number" id="Celular" name="Celular" type="text" placeholder="Celular" class="form-control"  required/>
             </div>
            </div>
 
@@ -96,7 +96,7 @@
             <span class='require'>*</span>
             </label>
             <div class="col-md-4">
-            <input id="email" name="email" type="email" placeholder="Digite su Email" class="form-control"/>
+            <input id="email" name="email" type="email" placeholder="Digite su Email" class="form-control"  required/>
             </div>
            </div>
            <div class="form-group">
@@ -104,17 +104,17 @@
                         <span class='require'>*</span>
                     </label>
                     <div class="col-md-4">
-                     <select id="especialidad" name="especialidad" data-style="btn-primary" class="form-control">
-                         <option selected value="">Seleccione...</option>
+                     <select  id="especialidad" name="especialidad[]" data-style="btn-primary" class="form-control selectpicker " multiple data-max-options="5"  required>
+                          <option selected disabled>Seleccione</option>
                          @foreach($especialidades as $esp)
-                         <option id="{{ $esp->id }}" value="{{ $esp->id }}">{{ $esp->nombre }}</option>
+                         <option  value="{{ $esp->nombre }}">{{ $esp->nombre }}</option>
                          @endforeach
                      </select>
                  </div>
              </div>
              <div class="form-group">
               <label for="inputFirstName" class="col-md-3 control-label">Dirección
-              <span class='require'>*</span>
+
               </label>
               <div class="col-md-4">
               <input id="Direccion" name="Direccion" type="text" placeholder="Dirección" class="form-control"/>

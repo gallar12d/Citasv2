@@ -16,15 +16,10 @@
           <div id="no-more-tables">
             <table id="table_id" class="table table-hover table-striped table-bordered table-advanced tablesorter display">
                   <thead>
-
                       <th>Nombres</th>
-
                       <th>Apellidos</th>
-
                       <th>Identificacion</th>
-
-                      <th>Especialidad_id</th>
-
+                      <th>Especialidad</th>
                       <th>actions</th>
                   </thead>
                   <tbody>
@@ -37,13 +32,12 @@
 
                           <td>{{$value->Identificacion}}</td>
 
-                          <td>{{$value->Especialidad_id}}</td>
 
                           <td align="center">
                               <div class="demo-btn">
 
                                   <a href = '{!! route('medico.edit', [$value->id]) !!}' class = 'btn btn-warning'><i class="fa fa-edit"></i></a>
-                  
+
                               </div>
                           </td>
                       </tr>

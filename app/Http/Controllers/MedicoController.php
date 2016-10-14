@@ -7,6 +7,7 @@ use App\Medico;
 use App\Departamento;
 use App\Municipio;
 use App\Especialidad;
+use Carbon\Carbon;
 use Amranidev\Ajaxis\Ajaxis;
 use URL;
 
@@ -54,6 +55,7 @@ class MedicoController extends Controller
      */
     public function store(Request $request)
     {
+
         $input = Request::except('_token');
         $medico = new Medico();
         $medico->Nombres = $input['Nombres'];
@@ -61,12 +63,13 @@ class MedicoController extends Controller
         $medico->Identificacion = $input['Identificacion'];
         $medico->Departamento_id = $input['departamento'];
         $medico->Municipio_id = $input['municipio'];
-        $medico->Fecha_nac = $input['Fecha_nac'];
+        $medico->Fecha_nac = Carbon::createFromFormat('d/m/Y',$input['Fecha_nac']);
         $medico->Celular = $input['Celular'];
         $medico->email = $input['email'];
-        $medico->Especialidad_id = $input['especialidad'];
+        $array = $input['especialidad'];
+
         $medico->Direccion = $input['Direccion'];
-  
+        $medico->Especialidad = serialize($array); 
         $medico->save();
 
         return redirect('medico');
