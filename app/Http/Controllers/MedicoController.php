@@ -105,9 +105,13 @@ class MedicoController extends Controller
             return URL::to('medico/'. $id . '/edit');
         }
 
+        $departamentos = Departamento::all();
+        $especialidades = Especialidad::All();
+
+
 
         $medico = Medico::findOrfail($id);
-        return view('medico.edit',compact('medico'
+        return view('medico.edit',compact('medico', 'departamentos', 'especialidades'
                 )
                 );
     }
@@ -141,7 +145,11 @@ class MedicoController extends Controller
 
         $medico->email = $input['email'];
 
-        $medico->Especialidad_id = $input['Especialidad_id'];
+      //  $medico->Especialidad_id = $input['especialidad'];
+        $array = $input['especialidad'];
+        $cadena_equipo = implode(", ", $array);
+      //  dd($cadena_equipo);
+        $medico->especialidad = $cadena_equipo;
 
         $medico->Direccion = $input['Direccion'];
 
