@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Medico;
 use App\Departamento;
 use App\Municipio;
+use App\Especialidad;
 use Amranidev\Ajaxis\Ajaxis;
 use URL;
 
@@ -36,9 +37,13 @@ class MedicoController extends Controller
     public function create()
     {
 
+      $especialidades = Especialidad::all();
+
         $departamentos = Departamento::all();
-        return view('medico.create', compact('departamentos')
+        return view('medico.create', compact('departamentos', 'especialidades')
                 );
+
+
     }
 
     /**
@@ -50,36 +55,18 @@ class MedicoController extends Controller
     public function store(Request $request)
     {
         $input = Request::except('_token');
-
         $medico = new Medico();
-
         $medico->Nombres = $input['Nombres'];
-
         $medico->Apellidos = $input['Apellidos'];
-
-       $medico->Identificacion = $input['Identificacion'];
-
-        $medico->Departamento_id = $input['Departamento_id'];
-
-        $medico->Municipio_id = $input['Municipio_id'];
-
-
+        $medico->Identificacion = $input['Identificacion'];
+        $medico->Departamento_id = $input['departamento'];
+        $medico->Municipio_id = $input['municipio'];
         $medico->Fecha_nac = $input['Fecha_nac'];
-
-
         $medico->Celular = $input['Celular'];
-
-
         $medico->email = $input['email'];
-
-
-        $medico->Especialidad_id = $input['Especialidad_id'];
-
-
+        $medico->Especialidad_id = $input['especialidad'];
         $medico->Direccion = $input['Direccion'];
-
-
-
+  
         $medico->save();
 
         return redirect('medico');
@@ -198,7 +185,7 @@ public function showmunic()
 
   print_r (
       json_encode (
-     $municipios = Municipio::select('Municipios.nombre')->join(
+     $municipios = Municipio::select('Municipios.nombre', 'Municipios.id')->join(
      'Departamentos',
      'Departamentos.id', '=', 'Municipios.departamento_id')
      ->where('Municipios.departamento_id', '=',   $data)->get()

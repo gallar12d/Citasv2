@@ -13,8 +13,11 @@ class Medico extends Model
 {
 
     public $timestamps = false;
-
     protected $table = 'medicos';
+    protected $primarykey = 'id';
+    protected $fillable = ['Nombres', 'Apellidos', 'Identificacion', 'departamento_id','municipio_id', 'Fecha_nac','Celular','email', 'Especialidad_id', 'Direccion'];
 
-	
+
+
+
 }

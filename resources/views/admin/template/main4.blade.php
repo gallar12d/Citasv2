@@ -18,9 +18,13 @@
     <link type="text/css" rel="stylesheet" href="{{ asset('vendors/font-awesome/css/font-awesome.min.css') }}">
     <link type="text/css" rel="stylesheet" href="{{ asset('vendors/bootstrap/css/bootstrap.min.css') }}">
 
+
+<link type="text/css" rel="stylesheet" href="{{ asset('vendors/select2/select2-madmin.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ asset('vendors/bootstrap-select/bootstrap-select.min.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ asset('vendors/multi-select/css/multi-select-madmin.css') }}">
+
+
         <script src="{{ asset('proui/js/vendor/modernizr-2.7.1-respond-1.4.2.min.js') }}"></script>
-
-
 
     <!--LOADING STYLESHEET FOR PAGE-->
     <link type="text/css" rel="stylesheet" href="{{ asset('vendors/intro.js/introjs.css') }}">
@@ -38,6 +42,19 @@
     <link type="text/css" rel="stylesheet" href="{{ asset('vendors/iCheck/skins/all.css') }}">
     <link type="text/css" rel="stylesheet" href="{{ asset('vendors/jquery-notific8/jquery.notific8.min.css') }}">
     <link type="text/css" rel="stylesheet" href="{{ asset('vendors/bootstrap-daterangepicker/daterangepicker-bs3.css') }}">
+
+    <link type="text/css" rel="stylesheet" href="{{ asset('vendors/bootstrap-colorpicker/css/colorpicker.css') }}">
+
+    <link type="text/css" rel="stylesheet" href="{{ asset('vendors/bootstrap-datepicker/css/datepicker.css') }}">
+
+    <link type="text/css" rel="stylesheet"
+          href="{{ asset('vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ asset('vendors/bootstrap-timepicker/css/bootstrap-timepicker.min.css') }}">
+
+    <link type="text/css" rel="stylesheet" href="{{ asset('vendors/bootstrap-clockface/css/clockface.css') }}">
+
+    <link type="text/css" rel="stylesheet" href="{{ asset('vendors/bootstrap-switch/css/bootstrap-switch.css') }}">
+
     <!--Loading style-->
     <link type="text/css" rel="stylesheet" href="{{ asset('css/themes/style1/orange-blue.css') }}" class="default-style">
     <link type="text/css" rel="stylesheet" href="{{ asset('css/themes/style1/orange-blue.css') }}" id="theme-change"
@@ -563,35 +580,10 @@
 
 
 
-    @include('admin.template.footer')
+ @include('admin.template.footer')
+
 
 <script src="{{ asset('js2/jquery-1.10.2.min.js') }}"></script>
-<script src="{{ asset('vendors/bootstrap/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('vendors/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js') }}"></script>
-<script src="{{ asset('js2/html5shiv.js') }}"></script>
-<script src="{{ asset('js2/respond.min.js') }}"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="<?= asset('app/lib/angular/angular.min.js') ?>"></script>
-<script src="<?= asset('js2/angular-pagination.js') ?>"></script>
-<link rel="stylesheet" href="https://cdn.rawgit.com/esvit/ng-table/1.0.0/dist/ng-table.min.css">
-<script src="https://cdn.rawgit.com/esvit/ng-table/1.0.0/dist/ng-table.js"></script>
-<script src="<?= asset('js/jquery.min.js') ?>"></script>
-<script src="<?= asset('js/bootstrap.min.js') ?>"></script>
-<script src="https://cdn.jsdelivr.net/angular.ngtable/1.0.0/ng-table.min.js"></script>
-<script src="{{ asset('proui/js/plugins.js') }}"></script>
-<!-- <script src="{{ asset('proui/js/app.js') }}"></script> -->
-<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-<script src="{{ asset('proui/js/helpers/gmaps.min.js') }}"></script>
-<!-- <script src="{{ asset('proui/js/pages/index.js') }}"></script> -->
-<!-- <script>$(function(){ Index.init(); });</script> -->
-<script src="{{ asset('plugins/jquery/js/jquery-2.2.1.js') }}"></script>
-<script type="text/javascript">
-var base = "{{ url('/') }}";
-</script>
-<script src="{{ asset('js/jquery.multi-select.js') }}"></script>
-<script src="{{ asset('js/roles3.js') }}"></script>
-<script src="{{ asset('js/roles4.js') }}"></script>
-
 <script src="{{ asset('js2/jquery-migrate-1.2.1.min.js') }}"></script>
 <script src="{{ asset('js2/jquery-ui.js') }}"></script>
 <!--loading bootstrap js-->
@@ -604,7 +596,6 @@ var base = "{{ url('/') }}";
 <script src="{{ asset('vendors/jquery-cookie/jquery.cookie.js') }}"></script>
 <script src="{{ asset('vendors/iCheck/icheck.min.js') }}"></script>
 <script src="{{ asset('vendors/iCheck/custom.min.js') }}"></script>
-
 <script src="{{ asset('vendors/jquery-notific8/jquery.notific8.min.js') }}"></script>
 <script src="{{ asset('vendors/jquery-highcharts/highcharts.js') }}"></script>
 <script src="{{ asset('js2/jquery.menu.js') }}"></script>
@@ -618,6 +609,42 @@ var base = "{{ url('/') }}";
 <!--CORE JAVASCRIPT-->
 <script src="{{ asset('js2/main.js') }}"></script>
 <!--LOADING SCRIPTS FOR PAGE-->
+<script src="{{ asset('vendors/select2/select2.min.js') }}"></script>
+<script src="{{ asset('vendors/bootstrap-select/bootstrap-select.min.js') }}"></script>
+<script src="{{ asset('vendors/multi-select/js/jquery.multi-select.js') }}"></script>
+<script src="{{ asset('js2/ui-dropdown-select.js') }}"></script>
+<script src="{{ asset('js/dcalendar.picker.js') }}"></script>
+<script src="<?= asset('app/lib/angular/angular.min.js') ?>"></script>
+<script src="<?= asset('js2/angular-pagination.js') ?>"></script>
+<link rel="stylesheet" href="https://cdn.rawgit.com/esvit/ng-table/1.0.0/dist/ng-table.min.css">
+<script src="https://cdn.rawgit.com/esvit/ng-table/1.0.0/dist/ng-table.js"></script>
+<script src="https://cdn.jsdelivr.net/angular.ngtable/1.0.0/ng-table.min.js"></script>
+<!--
+<script src="{{ asset('proui/js/plugins.js') }}"></script>
+<script src="{{ asset('plugins/jquery/js/jquery-2.2.1.js') }}"></script>
+-->
+<script type="text/javascript">
+var base = "{{ url('/') }}";
+</script>
+<script src="{{ asset('js/jquery.multi-select.js') }}"></script>
+<script src="{{ asset('js/roles3.js') }}"></script>
+<script src="{{ asset('js/roles4.js') }}"></script>
+
+<!--loading bootstrap js-->
+<script src="{{ asset('vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
+
+<script src="{{ asset('vendors/bootstrap-timepicker/js/bootstrap-timepicker.js') }}"></script>
+<script src="{{ asset('vendors/bootstrap-clockface/js/clockface.js') }}"></script>
+<script src="{{ asset('vendors/bootstrap-colorpicker/js/bootstrap-colorpicker.js') }}"></script>
+<script src="{{ asset('vendors/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
+<script src="{{ asset('vendors/jquery-maskedinput/jquery-maskedinput.js') }}"></script>
+
+
+
+
+<!--CORE JAVASCRIPT-->
+
+<!--LOADING SCRIPTS FOR PAGE-->
 <script src="{{ asset('vendors/intro.js/intro.js') }}"></script>
 <script src="{{ asset('vendors/flot-chart/jquery.flot.js') }}"></script>
 <script src="{{ asset('vendors/flot-chart/jquery.flot.categories.js') }}"></script>
@@ -630,23 +657,6 @@ var base = "{{ url('/') }}";
 <script src="{{ asset('vendors/calendar/zabuto_calendar.min.js') }}"></script>
 <script src="{{ asset('vendors/sco.message/sco.message.js') }}"></script>
 <script src="{{ asset('vendors/intro.js/intro.js') }}"></script>
-<script type="text/javascript">(function (i, s, o, g, r, a, m) {
-    i['GoogleAnalyticsObject'] = r;
-    i[r] = i[r] || function () {
-        (i[r].q = i[r].q || []).push(arguments)
-    }, i[r].l = 1 * new Date();
-    a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-    a.async = 1;
-    a.src = g;
-    m.parentNode.insertBefore(a, m)
-})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-ga('create', 'UA-145464-14', 'auto');
-ga('send', 'pageview');
-</script>
-
-
-
 <!--LOADING SCRIPTS FOR PAGE-->
 <script src="{{ asset('vendors/tableExport/tableExport.js') }}"></script>
 <script src="{{ asset('vendors/tableExport/jquery.base64.js') }}"></script>
@@ -655,49 +665,26 @@ ga('send', 'pageview');
 <script src="{{ asset('vendors/tableExport/jspdf/jspdf.js') }}"></script>
 <script src="{{ asset('vendors/tableExport/jspdf/libs/base64.js') }}"></script>
 <script src="{{ asset('js2/table-export.js') }}"></script>
-<script type="text/javascript">(function (i, s, o, g, r, a, m) {
-    i['GoogleAnalyticsObject'] = r;
-    i[r] = i[r] || function () {
-        (i[r].q = i[r].q || []).push(arguments)
-    }, i[r].l = 1 * new Date();
-    a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-    a.async = 1;
-    a.src = g;
-    m.parentNode.insertBefore(a, m)
-})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-ga('create', 'UA-145464-14', 'auto');
-ga('send', 'pageview');
-</script>
-
 <script src="{{ asset('js/riot/riot.min.js') }}"></script>
 <script src="{{ asset('js/riot/riot-compiler.min.js') }}"></script>
-<!-- AngularJS Application Scripts -->
+AngularJS Application Scripts
 <script src="<?= asset('app/app.js') ?>"></script>
 <script> var baseURL = "{{URL::to('/')}}"</script>
 <script src = "{{ URL::asset('js/AjaxisBootstrap.js')}}"></script>
 <script src = "{{ URL::asset('js/scaffold-interface-js/customA.js')}}"></script>
+
+
+
+
+
+
+<!-- <script src="{{ asset('js2/ui-dropdown-select.js') }}"></script>
+ -->
 <script src="{{ asset('vendors/DataTables/media/js/jquery.dataTables.js') }}"></script>
 <script src="{{ asset('vendors/DataTables/media/js/dataTables.bootstrap.js') }}"></script>
 <script src="{{ asset('vendors/DataTables/extensions/TableTools/js/dataTables.tableTools.min.js') }}"></script>
-<script src="{{ asset('js2/table-datatables.js') }}"></script>
-<script type="text/javascript">(function (i, s, o, g, r, a, m) {
-    i['GoogleAnalyticsObject'] = r;
-    i[r] = i[r] || function () {
-        (i[r].q = i[r].q || []).push(arguments)
-    }, i[r].l = 1 * new Date();
-    a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-    a.async = 1;
-    a.src = g;
-    m.parentNode.insertBefore(a, m)
-})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-ga('create', 'UA-145464-14', 'auto');
-ga('send', 'pageview');
-</script>
-
-
-
+<!-- <script src="{{ asset('js2/table-datatables.js') }}"></script>
+ -->
 
 @yield('js')
 
@@ -705,26 +692,3 @@ ga('send', 'pageview');
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
