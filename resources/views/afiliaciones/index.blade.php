@@ -34,8 +34,6 @@
                                 <a href="{!! route('afiliaciones.delete', [$value->id]) !!}" class = 'btn btn-primary' onclick="return confirm('Desea eliminar esta Afiliacione?')"><i class="fa fa-bitbucket"></i></a>
 
 
-
-
                             </div>
                         </td>
                     </tr>

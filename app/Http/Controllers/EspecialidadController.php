@@ -68,7 +68,7 @@ class EspecialidadController extends Controller
     public function edit($id)
     {
       $especialidades = Especialidad::findOrfail($id);
-      
+
       return view('especialidades.editar',compact('especialidades'));
         //
     }
@@ -99,6 +99,8 @@ class EspecialidadController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $especialidades = Especialidad::findOrfail($id);
+        $especialidades->delete();
+        return redirect('especialidades');
     }
 }

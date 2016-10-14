@@ -36,6 +36,17 @@ Route::get('especialidades/{id}/delete','EspecialidadController@destroy');
 Route::get('especialidades/{id}/delete', [ 'as' => 'especialidades.delete', 'uses' => 'EspecialidadController@destroy' ]);
 /* Rutas especialidades  */
 
+//medico Resources
+/********************* medico ***********************************************/
+Route::resource('medico','MedicoController');
+Route::post('medico/{id}/update','MedicoController@update');
+Route::get('medico/{id}/delete','MedicoController@destroy');
+Route::get('medico/{id}/deleteMsg','MedicoController@DeleteMsg');
+Route::post('/api/medico/obtenermunic',
+'MedicoController@showmunic');
+
+/********************* medico ***********************************************/
+
 
 
 

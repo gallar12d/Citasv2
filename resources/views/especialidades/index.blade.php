@@ -36,8 +36,6 @@
                                 <a href="{!! route('especialidades.delete', [$value->id]) !!}" class = 'btn btn-primary' onclick="return confirm('Desea eliminar esta Especialidad?')"><i class="fa fa-bitbucket"></i></a>
 
 
-
-
                             </div>
                         </td>
                     </tr>
