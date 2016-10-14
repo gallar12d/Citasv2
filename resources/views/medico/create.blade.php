@@ -99,18 +99,22 @@
             <input id="email" name="email" type="email" placeholder="Digite su Email" class="form-control"  required/>
             </div>
            </div>
+           <div class="form-group">
+                    <label for="inputFirstName" class="col-md-3 control-label">Especialidad
+                        <span class='require'>*</span>
+                    </label>
+                    <div class="col-md-4">
+                     <select  id="especialidad" name="especialidad[]" data-style="btn-primary" class="form-control selectpicker " multiple data-max-options="5"  required>
+
+                         @foreach($especialidades as $esp)
+                         <option  value="{{ $esp->nombre }}">{{ $esp->nombre }}</option>
+                         @endforeach
+                     </select>
+                 </div>
+             </div>
 
 
-             <div class="form-group">
-                      <label for="inputFirstName" class="col-md-3 control-label">Especialidad
-                          <span class='require'>*</span>
-                      </label>
-                      <div class="col-md-4">
 
-                        {{ Form::select('especialidad', $especialidades, 0, array('class'=>'form-control selectpicker', 'multiple data-max-options'=>'5')) }}
-
-                   </div>
-               </div>
 
 
 

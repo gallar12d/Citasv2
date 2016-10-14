@@ -8,7 +8,6 @@ use App\Departamento;
 use App\Municipio;
 use App\Especialidad;
 use Carbon\Carbon;
-use DB;
 use Amranidev\Ajaxis\Ajaxis;
 use URL;
 
@@ -39,9 +38,7 @@ class MedicoController extends Controller
     public function create()
     {
 
-
-      $especialidades = Especialidad::lists('nombre', 'id');
-
+      $especialidades = Especialidad::all();
       $departamentos = Departamento::all();
       return view('medico.create', compact('departamentos', 'especialidades')
                 );
