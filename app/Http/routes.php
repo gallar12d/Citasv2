@@ -34,6 +34,7 @@ Route::resource('especialidades','EspecialidadController');
 Route::post('especialidades/{id}/update','EspecialidadController@update');
 Route::get('especialidades/{id}/delete','EspecialidadController@destroy');
 Route::get('especialidades/{id}/delete', [ 'as' => 'especialidades.delete', 'uses' => 'EspecialidadController@destroy' ]);
+
 /* Rutas especialidades  */
 
 //medico Resources
@@ -44,7 +45,7 @@ Route::get('medico/{id}/delete','MedicoController@destroy');
 Route::get('medico/{id}/deleteMsg','MedicoController@DeleteMsg');
 Route::post('/api/medico/obtenermunic',
 'MedicoController@showmunic');
-
+Route::get('medico/{id}/show','MedicoController@show');
 /********************* medico ***********************************************/
 
 

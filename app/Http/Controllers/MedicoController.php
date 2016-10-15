@@ -83,10 +83,6 @@ class MedicoController extends Controller
      */
     public function show($id)
     {
-        if(Request::ajax())
-        {
-            return URL::to('medico/'.$id);
-        }
 
         $medico = Medico::findOrfail($id);
         return view('medico.show',compact('medico'));

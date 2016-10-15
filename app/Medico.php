@@ -3,6 +3,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Especialidad;
+use App\Departamento;
+use App\Municipio;
+
+
 
 /**
  * Class MedicoController
@@ -19,6 +23,14 @@ class Medico extends Model
     protected $fillable = ['Nombres', 'Apellidos', 'Identificacion', 'departamento_id','municipio_id', 'Fecha_nac','Celular','email', 'especialidad', 'Direccion'];
 
 
+public function departamentos() {
+        return $this->belongsTo(Departamento::class, 'departamento_id');
+    }
+
+
+public function municipios() {
+        return $this->belongsTo(Municipio::class, 'municipio_id');
+    }
 
 
 

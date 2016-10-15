@@ -39,6 +39,9 @@
 
                                   <a href = '{!! route('medico.edit', [$value->id]) !!}' class = 'btn btn-warning'><i class="fa fa-edit"></i></a>
 
+                                <a href = '{!! route('medico.show', [$value->id]) !!}' class = 'btn btn-info'><i class="fa fa-edit"></i></a>
+
+
                               </div>
                           </td>
                       </tr>

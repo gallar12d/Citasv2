@@ -1,105 +1,123 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!--Let browser know website is optimized for mobile-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Show Medico</title>
-    </head>
-    <body>
-        <div class = 'container'>
-            <h1>Show Medico</h1>
-            <br>
-            <form method = 'get' action = 'http://localhost:8000/medico'>
-                <button class = 'btn btn-primary'>Medico Index</button>
-            </form>
-            <br>
-            <table class = 'table table-bordered'>
-                <thead>
-                    <th>Key</th>
-                    <th>Value</th>
-                </thead>
-                <tbody>
+  @extends('admin.template.main4')
 
-                    
-                    <tr>
-                        <td>
-                            <b><i>Nombres : </i></b>
-                        </td>
-                        <td>{{$medico->Nombres}}</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>
-                            <b><i>Apellidos : </i></b>
-                        </td>
-                        <td>{{$medico->Apellidos}}</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>
-                            <b><i>Identificacion : </i></b>
-                        </td>
-                        <td>{{$medico->Identificacion}}</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>
-                            <b><i>Departamento_id : </i></b>
-                        </td>
-                        <td>{{$medico->Departamento_id}}</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>
-                            <b><i>Municipio_id : </i></b>
-                        </td>
-                        <td>{{$medico->Municipio_id}}</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>
-                            <b><i>Fecha_nac : </i></b>
-                        </td>
-                        <td>{{$medico->Fecha_nac}}</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>
-                            <b><i>Celular : </i></b>
-                        </td>
-                        <td>{{$medico->Celular}}</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>
-                            <b><i>email : </i></b>
-                        </td>
-                        <td>{{$medico->email}}</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>
-                            <b><i>Especialidad_id : </i></b>
-                        </td>
-                        <td>{{$medico->Especialidad_id}}</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>
-                            <b><i>Direccion : </i></b>
-                        </td>
-                        <td>{{$medico->Direccion}}</td>
-                    </tr>
-                    
+  @section('title', 'Datos Medico')
 
-                        
-                </tbody>
-            </table>
-        </div>
-    </body>
-        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-</html>
+  @section('content')
+
+
+  <div class = 'container'>
+   <div class="clearfix"></div>
+   <br>
+
+<div class="row">
+
+  <div class="col-lg-12">
+
+  <div class="panel panel-blue">
+
+   <div class="panel-heading">Informacion Completa Medico</div>
+    <div class="panel-body pan">
+    <form action="#" class="form-horizontal">
+
+<div class="row">
+  <div class="col-md-6">
+  <div class="form-body pal">
+<span class="label label-primary">Datos Basicos</span>
+<div class="clearfix"></div>
+<br>
+  <div class="form-group">
+  <label for="inputFirstName" class="col-md-3 control-label">Nombres:</label>
+    <div class="col-md-9">
+     <p class="form-control-static">{{$medico->Nombres}}</p>
+    </div>
+ </div>
+
+  <div class="form-group">
+  <label for="inputFirstName" class="col-md-3 control-label">Apellidos:</label>
+    <div class="col-md-9">
+     <p class="form-control-static">{{$medico->Apellidos}}</p>
+    </div>
+ </div>
+
+<div class="form-group">
+  <label for="inputFirstName" class="col-md-3 control-label">Identificación:</label>
+    <div class="col-md-9">
+     <p class="form-control-static">{{$medico->Identificacion}}</p>
+    </div>
+ </div>
+
+<div class="form-group">
+  <label for="inputFirstName" class="col-md-3 control-label">Departamento:</label>
+    <div class="col-md-9">
+     <p class="form-control-static">{{$medico->departamentos->nombre}}</p>
+    </div>
+ </div>
+
+
+<div class="form-group">
+  <label for="inputFirstName" class="col-md-3 control-label">Municipio:</label>
+    <div class="col-md-9">
+     <p class="form-control-static">{{$medico->municipios->nombre}}</p>
+    </div>
+ </div>
+
+</div>
+</div>
+
+  <div class="col-md-6">
+  <div class="form-body pal">
+<span class="label label-success">Datos Personales</span>
+<div class="clearfix"></div>
+<br>
+<div class="form-group">
+  <label for="inputFirstName" class="col-md-3 control-label">Nacimiento:</label>
+    <div class="col-md-9">
+     <p class="form-control-static">{{$medico->Fecha_nac}}</p>
+    </div>
+ </div>
+
+<div class="form-group">
+  <label for="inputFirstName" class="col-md-3 control-label">Celular:</label>
+    <div class="col-md-9">
+     <p class="form-control-static">{{$medico->Celular}}</p>
+    </div>
+ </div>
+
+<div class="form-group">
+  <label for="inputFirstName" class="col-md-3 control-label">Email:</label>
+    <div class="col-md-9">
+     <p class="form-control-static">{{$medico->email}}</p>
+    </div>
+ </div>
+
+
+<div class="form-group">
+  <label for="inputFirstName" class="col-md-3 control-label">Especialidad:</label>
+    <div class="col-md-9">
+     <p class="form-control-static">{{$medico->especialidad}}</p>
+    </div>
+ </div>
+
+
+<div class="form-group">
+  <label for="inputFirstName" class="col-md-3 control-label">Dirección:</label>
+    <div class="col-md-9">
+     <p class="form-control-static">{{$medico->Direccion}}</p>
+    </div>
+ </div>
+
+
+
+    </div>
+    </div>
+
+</div>
+
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+
+@stop
