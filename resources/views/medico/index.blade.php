@@ -38,6 +38,7 @@
                               <div class="demo-btn">
 
                                   <a href = '{!! route('medico.edit', [$value->id]) !!}' class = 'btn btn-warning'><i class="fa fa-edit"></i></a>
+                                  <a href="{!! route('especialidades.delete', [$value->id]) !!}" class = 'btn btn-primary' onclick="return confirm('Desea eliminar esta Especialidad?')"><i class="fa fa-bitbucket"></i></a>
 
                                 <a href = '{!! route('medico.show', [$value->id]) !!}' class = 'btn btn-info'><i class="fa fa-edit"></i></a>
 
