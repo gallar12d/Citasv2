@@ -1,92 +1,36 @@
 @extends('admin.template.main4')
 
-@section('title', 'Lista de Afiliaciones')
+@section('title', 'Agendamiento')
 
 @section('content')
 
+<div class="container">
+<div class="clearfix"></div>
+<br>
+<br>
+
+<div class="form-group">
+ <label for="inputFirstName" class="col-md-1 control-label">Medicos
+  <span class='require'>*</span>
+ </label>
+ <div class="col-md-4">
+  <select id="medicos" name="medicos" data-style="btn-primary" class="form-control">
+   <option selected value="">Seleccione...</option>
+    @foreach($medicos as $medic)
+     <option id="{{ $medic->id }}" value="{{ $medic->id }}">{{ $medic->Nombres }}</option>
+    @endforeach
+  </select>
+ </div>
+</div>
+</div>
 <script type="text/javascript" src="{{ asset('demo2/js/jquery.latest.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('demo2/js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('demo2/js/prism.min.js') }}"></script>
     <script src='{{ asset('lib/moment.min.js') }}'></script>
     <script type="text/javascript" src="{{ asset('src2/js/pignose.calendar.js') }}"></script>
-    <script type="text/javascript">
-    //<![CDATA[
-    $(function() {
-        $('.calendar').pignoseCalendar({
-            select: function(date, obj) {
-                obj.calendar.parent().next().show().text('Dias Seleccionados ' +
-                (date[0] === null? 'null':date[0].format('YYYY-MM-DD')) +
-                '.');
-            }
-        });
-
-        $('.input-calendar').pignoseCalendar({
-            buttons: true,
-        });
-
-        var $btn = $('.btn-calendar').pignoseCalendar({
-            modal: true,
-            buttons: true,
-            apply: function(date) {
-                $btn.next().show().text('You applied date ' + date + '.');
-            }
-        });
-
-        $('.calendar-dark').pignoseCalendar({
-            theme: 'dark',
-            select: function(date, obj) {
-                obj.calendar.parent().next().show().text('Dias seleccionados ' +
-                (date[0] === null? 'null':date[0].format('YYYY-MM-DD')) +
-                '.');
-            }
-        });
-
-        $('.multi-select-calendar').pignoseCalendar({
-            multiple: true,
-            select: function(date, obj) {
-                obj.calendar.parent().next().show().text('You selected ' +
-                    (date[0] === null? 'null':date[0].format('YYYY-MM-DD')) +
-                    '~' +
-                    (date[1] === null? 'null':date[1].format('YYYY-MM-DD')) +
-                    '.');
-            }
-        });
-
-        $('.toggle-calendar').pignoseCalendar({
-            toggle: true,
-            select: function(date, obj) {
-                var $target = obj.calendar.parent().next().show().html('You selected ' +
-                (date[0] === null? 'null':date[0].format('YYYY-MM-DD')) +
-                '.' +
-                '<br /><br />' +
-                '<strong>Active dates</strong><br /><br />' +
-                '<div class="active-dates"></div>');
-
-                for(var idx in obj.storage.activeDates) {
-                    var date = obj.storage.activeDates[idx];
-                    if(typeof date !== 'string') {
-                        continue;
-                    }
-                    $target.find('.active-dates').append('<span class="label label-default">' + date + '</span>');
-                }
-            }
-        });
-
-        $('.language-calendar').each(function() {
-            var $this = $(this);
-            var lang = $this.data('lang');
-            $this.pignoseCalendar({
-                lang: lang
-            });
-        });
-    });
-    //]]>
-    </script>
-
+    <script type="text/javascript" src="{{ asset('js2/agenda.js') }}"></script>
 
        <div class = 'container'>
-
-
 
         <div class="header">
 
@@ -100,11 +44,13 @@
         </div>
     </div>
 
+ <div class="form-actions text-left pal">
+  <button type="submit" class="btn btn-success" onclick="Guardar()">Guardar&nbsp;<i class="fa fa-floppy-o"></i></button>
+   &nbsp;
+  </div>
 
 
 
-
-       </div>
 
 
 
