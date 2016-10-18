@@ -59,6 +59,11 @@ Route::post('calendario', [ 'as' => 'calendario.agendamiento', 'uses' => 'Calend
 
 //Agenda doctores
 Route::resource('agendamiento','AgendadoctorController');
+Route::post('/api/v13/agendamiento/crearagendamiento',
+'AgendadoctorController@crearAgendamiento');
+Route::post('/api/v13/agendamiento/obtenerHorario',
+'AgendadoctorController@obtenerHorario');
+
 
 
 
