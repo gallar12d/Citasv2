@@ -1,4 +1,5 @@
 //<![CDATA[
+
     $(function() {
         $('.calendar').pignoseCalendar({
             select: function(date, obj) {
@@ -55,14 +56,17 @@
                     if(typeof date !== 'string') {
                         continue;
                     }
-                    $target.find('.active-dates').append('<span class="label label-default">' + date + '</span>');
 
+
+                    $target.find('.active-dates').append('<span name="agenda" class="label label-default">' + date + '</span>');
                 }
             }
+
         });
 
         $('.language-calendar').each(function() {
             var $this = $(this);
+            console.log($this);
             var lang = $this.data('lang');
             $this.pignoseCalendar({
                 lang: lang
@@ -76,18 +80,8 @@ document.getElementById('medicos').addEventListener('change', function(){
 });
 
 
-document.getElementById('.active-dates').addEventListener('click', function(){
-    variable = this.value;
-    console.log(variable);
-});
 
 
-
-
-var Guardar = function(){
-
-
-}
 
 
 
