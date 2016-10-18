@@ -35,6 +35,12 @@
         <div class="header">
 
         <div class="article">
+
+          @foreach($agenda as $ag)
+            <h1>{{$ag->start}}</h1>
+           <!-- <option id="{{ $medic->id }}" value="{{ $medic->id }}">{{ $medic->Nombres }}</option> -->
+          @endforeach
+
             <h3>Calendario Agendamiento</h3>
             <h4>Elija Dias No Trabajados.</h4>
             <div class="toggle-calendar"></div>
@@ -45,7 +51,7 @@
     </div>
 
  <div class="form-actions text-left pal">
-  <button type="submit" class="btn btn-success" onclick="Guardar()">Guardar&nbsp;<i class="fa fa-floppy-o"></i></button>
+  <button id="guardarAgenda" type="submit" class="btn btn-success" onclick="guardar()">Guardar&nbsp;<i class="fa fa-floppy-o"></i></button>
    &nbsp;
   </div>
 
