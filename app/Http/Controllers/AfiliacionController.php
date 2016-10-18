@@ -36,6 +36,29 @@ public function store(Request $request){
         return redirect('afiliaciones');
   }
 
+
+public function crearvarios(){
+
+     $data =($_POST['variable']);
+
+
+ foreach ($data as $key => $value)
+ {
+ Afiliacion::create([
+                'codigo_empresa' => $value['Codigo'],
+                'nombre' => $value['Nombre']
+
+            ]);
+       return response()->json([
+          "mensaje" => "creado"
+        ]);
+       }
+
+        /*print_r( json_encode( true ) );*/
+
+}
+
+
 public function edit($id){
 
     $afiliacion = Afiliacion::findOrfail($id);

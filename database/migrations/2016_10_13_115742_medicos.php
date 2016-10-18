@@ -24,13 +24,12 @@ class Medicos extends Migration
         $table->String('Apellidos');
         $table->integer('Identificacion');
         $table->integer('departamento_id')->unsigned();
-        $table->foreign('departamento_id')->references('id')->on('departamentos');
+        $table->foreign('departamento_id')->references('id')->on('departamentos')->onDelete('cascade');
         $table->integer('municipio_id')->unsigned();
-        $table->foreign('municipio_id')->references('id')->on('municipios');
+        $table->foreign('municipio_id')->references('id')->on('municipios')->onDelete('cascade');
         $table->date('Fecha_nac');
         $table->integer('Celular');
         $table->String('email');
-        $table->string('especialidad');
         $table->String('Direccion');
 
         /**

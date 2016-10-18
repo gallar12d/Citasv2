@@ -1,13 +1,13 @@
   @extends('admin.template.main4')
 
-  @section('title', 'Lista de Empresas')
+  @section('title', 'Lista de Medicos')
 
   @section('content')
 
   <div class = 'container'>
    <div class="clearfix"></div>
    <br>
-   <a class="btn btn-primary btn-flat" href="{!! route('medico.create') !!}">Crear Nuevo Medico</a>
+   <a class="btn btn-danger btn-flat" href="{!! route('medico.create') !!}">Crear Nuevo Medico&nbsp;<i class="fa fa-plus-circle"></i></a>
        <br>
        <br>
        <div class="panel panel-blue">
@@ -19,28 +19,23 @@
                       <th>Nombres</th>
                       <th>Apellidos</th>
                       <th>Identificacion</th>
-                      <th>Especialidad</th>
-                      <th>actions</th>
+                      <th>Acciones</th>
                   </thead>
                   <tbody>
                       @foreach($medicos as $value)
                       <tr>
 
                           <td>{{$value->Nombres}}</td>
-
                           <td>{{$value->Apellidos}}</td>
-
                           <td>{{$value->Identificacion}}</td>
-
-                          <td>{{$value->especialidad}}</td>
-
                           <td align="center">
                               <div class="demo-btn">
 
-                                  <a href = '{!! route('medico.edit', [$value->id]) !!}' class = 'btn btn-warning'><i class="fa fa-edit"></i></a>
-                                  <a href="{!! route('especialidades.delete', [$value->id]) !!}" class = 'btn btn-primary' onclick="return confirm('Desea eliminar esta Especialidad?')"><i class="fa fa-bitbucket"></i></a>
+                                <a href = '{!! route('medico.show', [$value->id]) !!}' class = 'btn btn-info'><i class="fa fa-eye"></i></a>
 
-                                <a href = '{!! route('medico.show', [$value->id]) !!}' class = 'btn btn-info'><i class="fa fa-edit"></i></a>
+                                <a href = '{!! route('medico.edit', [$value->id]) !!}' class = 'btn btn-warning'><i class="fa fa-edit"></i></a>
+
+                                <a href="{!! route('medico.delete', [$value->id]) !!}" class = 'btn btn-primary' onclick="return confirm('Desea eliminar esta Medico?')"><i class="fa fa-bitbucket"></i></a>
 
 
                               </div>

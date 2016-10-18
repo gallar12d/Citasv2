@@ -1,14 +1,19 @@
 <?php
 namespace App\Http\Controllers;
 
-use Request;
 use App\Http\Controllers\Controller;
+use App\Libraries\Repositories\MedicoRepository;
 use App\Medico;
 use App\Departamento;
 use App\Municipio;
 use App\Especialidad;
+use App\MedicoEspecialidad;
+use App\Image;
+use Storage;
+use File;
 use Carbon\Carbon;
 use Amranidev\Ajaxis\Ajaxis;
+use Illuminate\Http\Request;
 use URL;
 
 /**
@@ -19,6 +24,13 @@ use URL;
  */
 class MedicoController extends Controller
 {
+
+private $medicoRepository;
+    function __construct(MedicoRepository $medicoRepo)
+   {
+        $this->medicoRepository = $medicoRepo;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -26,8 +38,15 @@ class MedicoController extends Controller
      */
     public function index()
     {
-        $medicos = Medico::all();
-        return view('medico.index',compact('medicos'));
+
+     $medicos = Medico::all();
+
+
+
+
+  return view('medico.index',compact('medicos','municipios'));
+
+
     }
 
     /**
@@ -38,11 +57,10 @@ class MedicoController extends Controller
     public function create()
     {
 
-      $especialidades = Especialidad::all();
+      $especialidades = Especialidad::lists('nombre','id');
       $departamentos = Departamento::all();
       return view('medico.create', compact('departamentos', 'especialidades')
                 );
-
 
     }
 
@@ -55,22 +73,41 @@ class MedicoController extends Controller
     public function store(Request $request)
     {
 
-        $input = Request::except('_token');
+
+    $input = $request->except('_token', 'image');
+            if ($file = $request->file('image')) {
+            $image = \Image::make(\Input::file('image'));
+            $nombre = str_random(30).'.'.$file->getClientOriginalExtension();
+            //Ruta donde queremos guardar las imagenes
+            $path1 = public_path().'/thumbnails/';
+            $path2 = public_path().'/imagenes/';
+            // Guardar Original
+            $image->resize(480,400);
+            $image->save($path2.$nombre);
+            // Cambiar de tamaño
+            $image->resize(240,200);
+            // Guardar
+            $image->save($path1.$nombre);
+            //Guardamos nombre y nombreOriginal en la BD
+            $path = 'thumbnails/';
+            $path .= $nombre;
+            $input['image'] = $path;
+
         $medico = new Medico();
-        $medico->Nombres = $input['Nombres'];
-        $medico->Apellidos = $input['Apellidos'];
-        $medico->Identificacion = $input['Identificacion'];
-        $medico->Departamento_id = $input['departamento'];
-        $medico->Municipio_id = $input['municipio'];
-        $medico->Fecha_nac = Carbon::createFromFormat('d/m/Y',$input['Fecha_nac']);
-        $medico->Celular = $input['Celular'];
-        $medico->email = $input['email'];
-        $array = $input['especialidad'];
-        $cadena_equipo = implode(", ", $array);
-      //  dd($cadena_equipo);
-        $medico->especialidad = $cadena_equipo;
-        $medico->Direccion = $input['Direccion'];
-                        $medico->save();
+        $medico->Nombres = $request->Nombres;
+        $medico->Apellidos = $request->Apellidos;
+        $medico->Identificacion = $request->Identificacion;
+        $medico->Departamento_id = $request->departamento;
+        $medico->Municipio_id = $request->municipio;
+        $medico->Fecha_nac = Carbon::createFromFormat('d/m/Y',$request->Fecha_nac);
+        $medico->Celular = $request->Celular;
+        $medico->email = $request->email;
+        $medico->imagen = $path;
+        $array = $request->tags;
+        $medico->Direccion = $request->Direccion;
+        $medico->save();
+        $medico->tags()->sync($array);
+}
 
         return redirect('medico');
     }
@@ -81,11 +118,32 @@ class MedicoController extends Controller
      * @param    int  $id
      * @return  \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+public function show($id)
+ {
 
-        $medico = Medico::findOrfail($id);
-        return view('medico.show',compact('medico'));
+$medico = Medico::findOrfail($id);
+$medicoss = MedicoEspecialidad::distinct()->select('Medicos.Nombres as nombre', 'Especialidades.nombre as especialidad', 'Medicos.id as medico')
+->join(
+    'Medicos',
+    'Medicos.id', '=', 'medico_especialidad.medico_id')->
+join(
+    'Especialidades',
+    'Especialidades.id', '=', 'medico_especialidad.especialidad_id'
+    )->where('medico_especialidad.medico_id','=', $medico->id)->get();
+
+$asignacion_medicos = [];
+foreach ($medicoss as $medic) {
+        $med = MedicoEspecialidad::select('Medicos.Nombres as nombre', 'Especialidades.nombre as especialidad', 'Medicos.id as medico')
+->join(
+    'Medicos',
+    'Medicos.id', '=', 'medico_especialidad.medico_id')->
+join(
+    'Especialidades',
+    'Especialidades.id', '=', 'medico_especialidad.especialidad_id'
+    )->where('medico_especialidad.medico_id', $medic->medico)->get();
+        $asignacion_medicos = $med;
+    }
+     return view('medico.show',compact('medico','medicos','asignacion_medicos','medicoss'));
     }
 
     /**
@@ -96,22 +154,18 @@ class MedicoController extends Controller
      */
     public function edit($id)
     {
-        if(Request::ajax())
-        {
-            return URL::to('medico/'. $id . '/edit');
-        }
 
-        $departamentos = Departamento::all();
-        $especialidades = Especialidad::All();
-
-
-
+        $departamentos = Departamento::lists('nombre', 'id');
+        $municipios = Municipio::lists('nombre', 'id');
         $medico = Medico::findOrfail($id);
-        return view('medico.edit',compact('medico', 'departamentos', 'especialidades'
+        $especialidades = Especialidad::orderBy('nombre','DESC')->lists('nombre','id');
+
+        $my_especialidades = $medico->tags->lists('id')->ToArray();
+
+        return view('medico.edit',compact('medico', 'departamentos', 'especialidades','municipios','my_especialidades'
                 )
                 );
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -119,43 +173,116 @@ class MedicoController extends Controller
      * @param    int  $id
      * @return  \Illuminate\Http\Response
      */
-    public function update($id)
+    /*public function update(Request $request, $id)
     {
-        $input = Request::except('_token');
 
+            if ($file = $request->file('image')) {
+            $image = \Image::make(\Input::file('image'));
+            $nombre = str_random(30).'.'.$file->getClientOriginalExtension();
+            //Ruta donde queremos guardar las imagenes
+            $path1 = public_path().'/thumbnails/';
+            $path2 = public_path().'/imagenes/';
+            // Guardar Original
+            $image->resize(480,400);
+            $image->save($path2.$nombre);
+            // Cambiar de tamaño
+            $image->resize(240,200);
+            // Guardar
+            $image->save($path1.$nombre);
+            //Guardamos nombre y nombreOriginal en la BD
+            $path = 'thumbnails/';
+            $path .= $nombre;
+            $input['image'] = $path;
+
+        $input = $request->except('_token');
         $medico = Medico::findOrfail($id);
-
-        $medico->Nombres = $input['Nombres'];
-
-        $medico->Apellidos = $input['Apellidos'];
-
-        $medico->Identificacion = $input['Identificacion'];
-
-        $medico->Departamento_id = $input['Departamento_id'];
-
-        $medico->Municipio_id = $input['Municipio_id'];
-
-        $medico->Fecha_nac = $input['Fecha_nac'];
-
-        $medico->Celular = $input['Celular'];
-
-        $medico->email = $input['email'];
-
-      //  $medico->Especialidad_id = $input['especialidad'];
-        $array = $input['especialidad'];
-        $cadena_equipo = implode(", ", $array);
-      //  dd($cadena_equipo);
-        $medico->especialidad = $cadena_equipo;
-
-        $medico->Direccion = $input['Direccion'];
-
-
+        $medico->Nombres = $request->Nombres;
+        $medico->Apellidos = $request->Apellidos;
+        $medico->Identificacion = $request->Identificacion;
+        $medico->Departamento_id = $request->Departamento_id;
+        $medico->Municipio_id = $request->municipio;
+        $medico->Celular = $request->Celular;
+        $medico->email = $request->email;
+        $medico->Direccion = $request->Direccion;
+        $medico->Fecha_nac = Carbon::createFromFormat('d/m/Y',$request->Fecha_nac);
+        $array = $request->tags;
+        $medico->Direccion = $request->Direccion;
         $medico->save();
-
+        $medico->tags()->sync($array);
+}
         return redirect('medico');
-    }
+    }*/
 
-    /**
+
+
+    public function update(Request $request, $id)
+    {
+
+        $input = $request->except('_token', 'image');
+        $medico = Medico::findOrfail($id)->fill($request->all());
+        $imagen = Medico::find($medico->imagen);
+
+        if(empty($medico))
+        {
+            Flash::error('medico not found');
+
+            return redirect(route('medico.index'));
+        }
+
+        $data = $request->except('_token', 'image');
+
+        if ($medico->imagen) {
+            $name = explode('/', $medico->imagen);
+            $name = end($name);
+
+            if (File::exists('imagenes/'.$name))
+                File::delete('imagenes/'.$name);
+
+            if (File::exists('thumbnails/'.$name));
+
+        }
+
+        if ($file = $request->file('image')) {
+            $image = \Image::make(\Input::file('image'));
+            $nombre = str_random(20).'.'.$file->getClientOriginalExtension();
+            //Ruta donde queremos guardar las imagenes
+            $path1 = public_path().'/thumbnails/';
+            $path2 = public_path().'/imagenes/';
+            // Guardar Original
+            $image->resize(400,400);
+            $image->save($path2.$nombre);
+            // Cambiar de tamaño
+            $image->resize(200,200);
+            // Guardar
+            $image->save($path1.$nombre);
+            //Guardamos nombre y nombreOriginal en la BD
+            $path = 'thumbnails/';
+            $path .= $nombre;
+            $data['imagen'] = $path;
+            $medico->imagen = $path;
+
+
+        }
+            $imagenes = $medico->imagen;
+
+
+        $medico->Nombres = $request->Nombres;
+        $medico->Apellidos = $request->Apellidos;
+        $medico->Identificacion = $request->Identificacion;
+        $medico->Departamento_id = $request->Departamento_id;
+        $medico->Municipio_id = $request->municipio;
+        $medico->Celular = $request->Celular;
+        $medico->email = $request->email;
+        $medico->Direccion = $request->Direccion;
+        $medico->Fecha_nac = Carbon::createFromFormat('Y-m-d',$request->Fecha_nac);
+        $medico->imagen = $imagenes;
+        $array = $request->tags;
+        $medico->Direccion = $request->Direccion;
+        $medico->save();
+        $medico->tags()->sync($array);
+        return redirect(route('medico.index'));
+    }
+  /**
      * Delete confirmation message by Ajaxis
      *
      * @link  https://github.com/amranidev/ajaxis
@@ -181,8 +308,8 @@ class MedicoController extends Controller
     public function destroy($id)
     {
      	$medico = Medico::findOrfail($id);
-     	$medico->delete();
-        return URL::to('medico');
+        $medico->delete();
+        return redirect(route('medico.index'));
     }
 
 public function showmunic()

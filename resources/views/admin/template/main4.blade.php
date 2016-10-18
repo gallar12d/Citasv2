@@ -2,6 +2,7 @@
 <html lang="en-US" ng-app="employeeRecords">
 <head><title>Dashboard | Dashboard</title>
     <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="cache-control" content="no-cache">
@@ -17,6 +18,150 @@
           href="{{ asset('vendors/jquery-ui-1.10.4.custom/css/ui-lightness/jquery-ui-1.10.4.custom.min.css') }}">
     <link type="text/css" rel="stylesheet" href="{{ asset('vendors/font-awesome/css/font-awesome.min.css') }}">
     <link type="text/css" rel="stylesheet" href="{{ asset('vendors/bootstrap/css/bootstrap.min.css') }}">
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('demo2/css/prism.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('demo2/css/calendar-style.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('src2/css/pignose.calendar.css') }}" />
+    <style type="text/css">
+        @import url(https://fonts.googleapis.com/css?family=Raleway);
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+        html, body {
+            position: relative;
+            height: 100%;
+        }
+
+        #wrapper {
+            padding-bottom: 40px;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .header {
+            max-width: 1200px;
+            width: 80%;
+            margin: 0 auto;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: 400;
+            font-family: 'Raleway', 'helvetica', 'sans-serif';
+            color: #333333;
+        }
+
+        .article {
+            max-width: 1200px;
+            width: 80%;
+            margin: 0 auto;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid #efefef;
+            font-family: 'Raleway', 'helvetica', 'sans-serif';
+            text-align: center;
+        }
+
+        .article h3 {
+            margin-bottom: 40px;
+        }
+
+        .article h5 {
+            margin-top: 60px;
+            font-size: 130%;
+            font-weight: 600;
+        }
+
+        .article table {
+            font-size: 115%;
+            text-align: left;
+        }
+
+        .article pre {
+            font-size: 115%;
+        }
+
+        .article ul {
+            display: inline-block;
+            font-size: 115%;
+            font-weight: 600;
+            margin: 20px 0;
+        }
+
+        .article ul li {
+            margin: 10px 0;
+        }
+
+        .input-calendar {
+            display: block;
+            width: 100%;
+            max-width: 360px;
+            margin: 0 auto;
+            height: 3.2em;
+            line-height: 3.2em;
+            font: inherit;
+            padding: 0 1.2em;
+            border: 1px solid #d8d8d8;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
+            -o-box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
+            -moz-box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
+            -webkit-box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
+        }
+
+        .btn-calendar {
+            display: block;
+            width: 100%;
+            max-width: 360px;
+            height: 3.2em;
+            line-height: 3.2em;
+            background-color: #52555a;
+            margin: 0 auto;
+            font-weight: 600;
+            color: #ffffff !important;
+            text-decoration: none !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
+            -o-box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
+            -moz-box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
+            -webkit-box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
+        }
+
+        .btn-calendar:hover {
+            background-color: #5a6268;
+        }
+
+        .box {
+            display: none;
+            max-width: 360px;
+            margin: 0 auto;
+            font-weight: 600;
+            margin-top: 2em;
+            padding: 1.6em;
+            background-color: #fafafa;
+            border: 1px solid #d8d8d8;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
+            -o-box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
+            -moz-box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
+            -webkit-box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
+            overflow: hidden;
+        }
+
+        .box .active-dates .label {
+            margin: 0 .4em;
+            white-space: normal;
+            word-break: break-word;
+            line-height: 2.4;
+        }
+
+        .box.box-languages .label {
+            font-size: 100%;
+        }
+    </style>
+
 
 
 <link type="text/css" rel="stylesheet" href="{{ asset('vendors/select2/select2-madmin.css') }}">
@@ -67,9 +212,15 @@
   <script src="{{ asset('dist/sweetalert-dev.js') }}"></script>
   <link rel="stylesheet" href="{{ asset('dist/sweetalert.css') }}">
 
+  <link rel="stylesheet" href="{{ asset('plugins/chosen/chosen.css') }}">
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js" type="text/javascript"></script>
         <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.10.0.js" type="text/javascript"></script>
+
+
+<link href='{{ asset('fullcalendar/fullcalendar.css') }}' rel='stylesheet' />
+
+
 
 
 </head>
@@ -560,7 +711,7 @@
 
             </div>
             <!--END TITLE & BREADCRUMB PAGE--><!--BEGIN CONTENT-->
-				<div id="page-content">
+                <div id="page-content">
                     <div class="row">
                        <div class="col-sm-6 col-lg-3">
                           <section>
@@ -582,12 +733,27 @@
 
  @include('admin.template.footer')
 
-
+<script src='{{ asset('lib/moment.min.js') }}'></script>
 <script src="{{ asset('js2/jquery-1.10.2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('demo2/js/jquery.latest.min.js') }}"></script>
+    <script src="{{ asset('vendors/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('demo2/js/prism.min.js') }}"></script>
+    <script src='{{ asset('lib/moment.min.js') }}'></script>
+    <script type="text/javascript" src="{{ asset('src2/js/pignose.calendar.js') }}"></script>
+
+<script src='{{ asset('fullcalendar/fullcalendar.min.js') }}'></script>
+<script src="{{ asset('vendors/moment/moment.js') }}"></script>
 <script src="{{ asset('js2/jquery-migrate-1.2.1.min.js') }}"></script>
 <script src="{{ asset('js2/jquery-ui.js') }}"></script>
 <!--loading bootstrap js-->
-<script src="{{ asset('vendors/bootstrap/js/bootstrap.min.js') }}"></script>
+
+
+
+
+
+
+
+
 <script src="{{ asset('vendors/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js') }}"></script>
 <script src="{{ asset('js2/html5shiv.js') }}"></script>
 <script src="{{ asset('js2/respond.min.js') }}"></script>
@@ -604,6 +770,7 @@
 <script src="{{ asset('vendors/responsive-tabs/responsive-tabs.js') }}"></script>
 <script src="{{ asset('vendors/jquery-news-ticker/jquery.newsTicker.min.js') }}"></script>
 <script src="{{ asset('vendors/moment/moment.js') }}"></script>
+
 <script src="{{ asset('vendors/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
 <script src="{{ asset('vendors/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 <!--CORE JAVASCRIPT-->
@@ -638,12 +805,7 @@ var base = "{{ url('/') }}";
 <script src="{{ asset('vendors/bootstrap-colorpicker/js/bootstrap-colorpicker.js') }}"></script>
 <script src="{{ asset('vendors/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
 <script src="{{ asset('vendors/jquery-maskedinput/jquery-maskedinput.js') }}"></script>
-
-
-
-
 <!--CORE JAVASCRIPT-->
-
 <!--LOADING SCRIPTS FOR PAGE-->
 <script src="{{ asset('vendors/intro.js/intro.js') }}"></script>
 <script src="{{ asset('vendors/flot-chart/jquery.flot.js') }}"></script>
@@ -674,17 +836,90 @@ AngularJS Application Scripts
 <script src = "{{ URL::asset('js/scaffold-interface-js/customA.js')}}"></script>
 
 
-
-
-
-
 <!-- <script src="{{ asset('js2/ui-dropdown-select.js') }}"></script>
  -->
 <script src="{{ asset('vendors/DataTables/media/js/jquery.dataTables.js') }}"></script>
 <script src="{{ asset('vendors/DataTables/media/js/dataTables.bootstrap.js') }}"></script>
 <script src="{{ asset('vendors/DataTables/extensions/TableTools/js/dataTables.tableTools.min.js') }}"></script>
-<!-- <script src="{{ asset('js2/table-datatables.js') }}"></script>
- -->
+ <script src="{{ asset('js2/table-datatables.js') }}"></script>
+
+
+<script src="{{ asset('plugins/chosen/chosen.jquery.js') }}"></script>
+
+    <script type="text/javascript">
+    //<![CDATA[
+    $(function() {
+        $('.calendar').pignoseCalendar({
+            select: function(date, obj) {
+                obj.calendar.parent().next().show().text('You selected ' +
+                (date[0] === null? 'null':date[0].format('YYYY-MM-DD')) +
+                '.');
+            }
+        });
+
+        $('.input-calendar').pignoseCalendar({
+            buttons: true,
+        });
+
+        var $btn = $('.btn-calendar').pignoseCalendar({
+            modal: true,
+            buttons: true,
+            apply: function(date) {
+                $btn.next().show().text('You applied date ' + date + '.');
+            }
+        });
+
+        $('.calendar-dark').pignoseCalendar({
+            theme: 'dark',
+            select: function(date, obj) {
+                obj.calendar.parent().next().show().text('You selected ' +
+                (date[0] === null? 'null':date[0].format('YYYY-MM-DD')) +
+                '.');
+            }
+        });
+
+        $('.multi-select-calendar').pignoseCalendar({
+            multiple: true,
+            select: function(date, obj) {
+                obj.calendar.parent().next().show().text('You selected ' +
+                    (date[0] === null? 'null':date[0].format('YYYY-MM-DD')) +
+                    '~' +
+                    (date[1] === null? 'null':date[1].format('YYYY-MM-DD')) +
+                    '.');
+            }
+        });
+
+        $('.toggle-calendar').pignoseCalendar({
+            toggle: true,
+            select: function(date, obj) {
+                var $target = obj.calendar.parent().next().show().html('You selected ' +
+                (date[0] === null? 'null':date[0].format('YYYY-MM-DD')) +
+                '.' +
+                '<br /><br />' +
+                '<strong>Active dates</strong><br /><br />' +
+                '<div class="active-dates"></div>');
+
+                for(var idx in obj.storage.activeDates) {
+                    var date = obj.storage.activeDates[idx];
+                    if(typeof date !== 'string') {
+                        continue;
+                    }
+                    $target.find('.active-dates').append('<span class="label label-default">' + date + '</span>');
+                }
+            }
+        });
+
+        $('.language-calendar').each(function() {
+            var $this = $(this);
+            var lang = $this.data('lang');
+            $this.pignoseCalendar({
+                lang: lang
+            });
+        });
+    });
+    //]]>
+    </script>
+
 
 @yield('js')
 
@@ -692,3 +927,30 @@ AngularJS Application Scripts
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

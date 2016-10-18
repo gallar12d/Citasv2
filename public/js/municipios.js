@@ -9,6 +9,7 @@ document.getElementById('departamento').addEventListener('change', function(){
 
     }).success(function(data){
     var munic = $('#municipio').empty();
+
     $.each(data, function(index, val) {
 
     var data_area = '<option value="'+val.id+'">' + val.nombre + '</option>';

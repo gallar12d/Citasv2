@@ -3,94 +3,48 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Registrar varios alumnos a la vez</h4>
+                    <h4 class="modal-title" style="color:#fbfdff">Registrar Multiples Afiliaciones</h4>
                 </div>
                 <div class="modal-body">
                     <table class="table table-stripped">
                         <thead>
                             <tr>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
-                                <th>Departamento</th>
-                                <th>Municipio</th>
-                                <th>Correo</th>
-                                <th>Sexo</th>
-                                <th>Nacimiento</th>
-                                <th>Imagen</th>
+                                <th>Codigo Empresa</th>
+                                <th>Nombre Empresa</th>
                                 <th style="width:60px;"></th>
                             </tr>
                             <!-- Formulario para agregar nuevos alumnos -->
                             <tr>
                                 <td>
-                                    <input id="nombre" type="text" placeholder="Nombre" class="form-control" />
+                                    <input id="codigo_empresa" type="text" placeholder="Codigo Empresa" class="form-control" />
                                 </td>
                                 <td>
-                                    <input id="apellido" type="text" placeholder="Apellido" class="form-control" />
+                                    <input id="nombre_empresa" type="text" placeholder="Nombre Empresa" class="form-control" data-validacion-tipo="requerido|min:10" />
                                 </td>
                                 <td>
-                                    <select id="carrera" onchange={cambiar} class="form-control">
-                                        <option each={carreras} id="{id}" value="{id}">{nombre}</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="municipio"  class="form-control">
-                                        <option value=""></option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <input id="correo" type="text" placeholder="Correo" class="form-control" />
-                                </td>
-                                <td>
-                                    <select id="sexo" class="form-control">
-                                        <option value="1">Hombre</option>
-                                        <option value="0">Mujer</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <input id="nacimiento" type="text" placeholder="Cumpleaños" class="form-control" />
-                                </td>
-                                <td>
-                                    <button class="btn btn-block btn-default" type="button" onclick={agregar}>Agregar</button>
+                                    <button class="btn btn-block btn-blue" type="button" onclick={agregar}><i class="fa fa-plus-circle"></i>&nbsp;Agregar</button>
                                 </td>
                             </tr>
                         </thead>
                         <tbody>
                             <tr each={data}>
                                 <td>
+                                    {Codigo}
+                                </td>
+                                <td>
                                     {Nombre}
-                                </td>
-                                <td>
-                                    {Apellido}
-                                </td>
-                                <td>
-                                    {DepartamentoView}
-                                </td>
-                                <td>
-                                    {MunicipioView}
-                                </td>
-                                <td>
-                                    {Correo}
-                                </td>
-                                <td>
-                                    {SexoView}
-                                </td>
-                                <td>
-                                    {FechaNacimiento}
-                                </td>
-                                <td>
-                                    {Imagen}
                                 </td>
 
                                 <td>
-                                    <button class="btn btn-block btn-danger" type="button" onclick={retirar}>Retirar</button>
+                                    <button class="btn btn-block btn-danger" type="button" onclick={retirar}><i class="fa fa-minus"></i>&nbsp;Retirar</button>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button if={data.length > 0} type="button" class="btn btn-success" onclick={almacenar}>Guardar</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button if={data.length > 0} type="button" class="btn btn-success" onclick={almacenar}><i class="fa fa-floppy-o"></i>&nbsp;Guardar</button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal"><i class="fa fa-sign-out"></i>&nbsp;Cerrar</button>
                 </div>
             </div>
         </div>
@@ -103,9 +57,7 @@
         self.carreras2 = [];
         self.data = [];
 //
-        getDepartamentos();
-        getMunicipios();
-//
+        //
         retirar(e){
             var item = e.item;
             var index = self.data.indexOf(item);
@@ -113,87 +65,43 @@
         }
 //
 
-cambiar(){
-
-    var variable = $('#carrera').val();
-    $.ajax({
-        url: base + '/api/v13/employees/obtenermunic',
-        type: 'POST',
-        dataType: 'JSON',
-        data: {variable: variable},
-        success: function(data){
-        var munic = $('#municipio').empty();
-        $.each(data, function(index, val) {
-        var data_area = '<option>' + val.nombre + '</option>';
-        munic.append(data_area);
-       });
-      },
-   });
- }
-
 agregar() {
-            var nombre = document.getElementById('nombre'),
-                apellido = document.getElementById('apellido'),
-                carrera = document.getElementById('carrera'),
-                departamento = document.getElementById('carrera'),
-                municipio = document.getElementById('municipio'),
-                correo = document.getElementById('correo'),
-                sexo = document.getElementById('sexo'),
-                nacimiento = document.getElementById('nacimiento');
+            var codigo_empresa = document.getElementById('codigo_empresa'),
+                nombre_empresa = document.getElementById('nombre_empresa');
 
-            var alumno = {
-                Nombre: nombre.value,
-                Apellido: apellido.value,
-                Carrera_id: carrera.value,
-                Departamento: departamento.value,
-                DepartamentoView: departamento.options[departamento.selectedIndex].text,
-                Municipio: municipio.value,
-                MunicipioView: municipio.options[municipio.selectedIndex].text,
-                Correo: correo.value,
-                Sexo: sexo.value,
-                SexoView: sexo.options[sexo.selectedIndex].text,
-                FechaNacimiento: nacimiento.value,
-
-
-
+            var afiliacion = {
+                Codigo: codigo_empresa.value,
+                Nombre: nombre_empresa.value,
             };
 
-            nombre.value = '';
-            apellido.value = '';
-            correo.value = '';
-            nacimiento.value = '';
-            departamento.value = 1;
-            carrera.value = 1;
-            sexo.value = 1;
+            codigo_empresa.value = '';
+            nombre_empresa.value = '';
 
-            self.data.push(alumno);
+            self.data.push(afiliacion);
+
         }
 
         almacenar(){
-            console.log(self.data);
         $.ajax({
-        url: base + '/api/v13/employees/crear',
+        url: base + '/api/v13/afiliaciones/crear',
         type: 'POST',
         dataType: 'JSON',
         data: {variable: self.data},
-        success: function(data){
-
-      },
-   });
+       success: function (data)
+    {
+    swal("Felicidades!", "Tus Datos han sido Almacenados!", "success",
+        "timer: 5000",   "showConfirmButton: false");
+    window.location.reload(true);
+    },
+       });
   }
-     function getDepartamentos() {
-            $.post('/api/v13/employees/obtenerdepto', function(r) {
-                self.carreras = r;
-                self.update();
-            }, 'json')
-        }
 
-        function getMunicipios(){
-            $.post('/api/v13/employees/obtenermunic', function(t) {
-                console.log(t);
-                self.update();
-            }, 'json')
-        }
+
+cerrar(){
+
+    alert(1);
+}
+
 
         this.on('mount', function() {
             $("#user-modal-tag").modal();

@@ -7,7 +7,6 @@ use App\Departamento;
 use App\Municipio;
 
 
-
 /**
  * Class MedicoController
  *
@@ -31,6 +30,13 @@ public function departamentos() {
 public function municipios() {
         return $this->belongsTo(Municipio::class, 'municipio_id');
     }
+
+
+public function tags(){
+ return $this->belongsToMany(Especialidad::class,'medico_especialidad')
+->withPivot('especialidad_id','status');
+
+  }
 
 
 
