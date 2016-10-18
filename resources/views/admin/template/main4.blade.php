@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-US" ng-app="employeeRecords">
-<head><title>aDashboard | Dashboard</title>
+<head><title>agDashboard | Dashboard</title>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
