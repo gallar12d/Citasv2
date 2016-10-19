@@ -2,7 +2,12 @@ document.getElementById('medico').addEventListener('change', function(){
     variable = this.value;
 
 });
+
+alert('Clicked on: ' + start.format());
+
 var guardar = function(){
+
+
 var agenda = $('#start').val();
     $.ajax({
         url: base + '/api/v13/agendamiento/crearagenda',
