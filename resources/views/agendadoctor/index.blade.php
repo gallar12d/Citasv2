@@ -22,8 +22,7 @@
 </div>
 
 
-
- <div class="container">
+<div class="container">
 <div class="clearfix"></div>
 <br>
     <div class="row">
@@ -57,16 +56,6 @@
                       <input type="text" name="start" class="form-control" id="start">
                     </div>
                   </div>
-
-                <div class="form-group">
-                 <label class="col-md-3 control-label">Fecha a Restringir</label>
-                  <div class="col-md-5">
-                   <input class="datepicker" data-date-format="dd/mm/yyyy" name="Fecha_nac"  required>
-                  </div>
-                </div>
-
-
-
 
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -121,23 +110,20 @@
     <!-- FullCalendar -->
     <script src='{{ asset('lib/moment.min.js') }}'></script>
     <script src='{{ asset('fullcalendar/fullcalendar.min.js') }}'></script>
-    <script type="text/javascript">
-    $.fn.datepicker.defaults.format = "mm/dd/yyyy";
-    $('.datepicker').datepicker({
-        startDate: '-3d'
-    });
-  </script>
 
 
     <script>
 
     $(document).ready(function() {
 
+
         $('#calendar').fullCalendar({
             header: {
                 left: 'prev,next today',
                 center: 'title',
                 right: 'mes'
+
+
             },
             defaultDate: '2016-01-12',
             editable: true,
@@ -229,5 +215,12 @@ events: [
 
 </script>
 <script src="{{ asset('js2/agendadoctor.js') }}"></script>
-
+@section('js')
+<script type="text/javascript">
+  $.fn.datepicker.defaults.format = "mm/dd/yyyy";
+  $('.datepicker').datepicker({
+  startDate: '-3d'
+ });
+</script>
+@endsection
 @stop
