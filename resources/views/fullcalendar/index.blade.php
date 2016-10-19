@@ -241,14 +241,33 @@ events: [
                 },
             <?php endforeach; ?>
 
-            {
-              start: '2016-09-28',
+        <?php foreach($agenda as $agend):
+
+                $start = explode(" ", $agend['start']);
+                if($start[1] == '00:00:00'){
+                    $start = $start[0];
+                }else{
+                    $start = $event['start'];
+
+                }
+                 ?>
+                {
+                  start: '<?php echo $start; ?>',
+                  overlap: false,
+                  rendering: 'background',
+                  color: 'red'
+
+                },
+            <?php endforeach; ?>
+
+/*            {
+              start: '2016-09-29',
               overlap: false,
               rendering: 'background',
               color: 'red'
         }
 
-
+*/
             ]
 
 

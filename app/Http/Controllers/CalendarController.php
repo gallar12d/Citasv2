@@ -7,13 +7,15 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Agendamiento;
+use App\Agendadoctor;
 
 class CalendarController extends Controller
 {
     public function index(){
     $events = Agendamiento::all();
+    $agenda = Agendadoctor::all();
 
-    return view('fullcalendar.index', compact('events'));
+    return view('fullcalendar.index', compact('events','agenda'));
 
 }
 
