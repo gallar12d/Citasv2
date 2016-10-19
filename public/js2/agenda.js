@@ -134,6 +134,7 @@ document.getElementById('medicos').addEventListener('change', function(){
         data: {id: variable},
 
     }).success(function(data){
+
       //console.log(data);
     var otro =  $(".pignose-calendar-body div").prev().attr('data');
     console.log(otro);
@@ -157,19 +158,14 @@ document.getElementById('medicos').addEventListener('change', function(){
   //  var munic = $('#municipio').empty();
 
 
-
-
-
-
-
-
-
-
-    $.each(data, function(index, val) {
-
-    var data_area = '<option value="'+val.id+'">' + val.nombre + '</option>';
-    munic.append(data_area);
-    });
+    "events": [{
+  "month": "10",
+  "day": "19",
+  "year": "2016",
+  "title": "Lorem ipsum",
+  "description": "Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Nullam id dolor id nibh ultricies vehicula ut id elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Cras justo odio, dapibus ac facilisis in, egestas eget quam."
+  }],
+},
 
     });
 
