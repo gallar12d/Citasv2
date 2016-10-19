@@ -1,271 +1,137 @@
-@extends('admin.template.main4')
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Horarios | JHCodes</title>
+    <!-- Bootstrap -->
+    <link href='https://fonts.googleapis.com/css?family=Maven+Pro' rel='stylesheet' type='text/css'>
+    <link href="{{ asset('horario/style.css') }}" rel="stylesheet">
+  </head>
+  <body>
+    <!-- menu -->
+    <div id="menu" class="col-md-12 text-right">
+      <div class="container">
+          <a class="btn btn-primary" href="lista.php"><i class="fa fa-calendar" aria-hidden="true"></i> Lista de Horarios</a>
+          <button class="btn btn-warning" data-toggle="modal" data-target="#myModal"><i class="fa fa-calendar-check-o"></i> Nuevo Horario</button>
+      </div>
+    </div>
+    <!-- menu -->
 
-@section('title', 'Agendamiento')
 
-@section('content')
+    <!-- container -->
+      <div class="container">
+       <div id="clockindex" class="col-sm-12 text-center">
+         <i class="fa fa-calendar-plus-o icon-clock-index animated infinite pulse" aria-hidden="true"></i>
+       </div>
+       <div id="mynew" class="col-sm-12">
 
+       </div>
+      </div>
+    <!-- container -->
 
-<div class="clearfix"></div><br>
-<br>
-<div class="row">
-  <div class="col-lg-12">
-    <div class="input-group">
-      <span class="input-group-addon">Medicos: </span>
-      <select id="medico" name="medico" data-style="btn-primary" class="form-control">
-        <option selected value="">Seleccione...</option>
-          @foreach($medicos as $medic)
-        <option id="{{ $medic->id }}" value="{{ $medic->id }}">{{ $medic->Nombres }}</option>
-          @endforeach
-  </select>
+<!-- modal nuevo horario -->
+<div class="modal fade animated bounceInLeft" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close cancel-new" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
+        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-calendar"></i> Nuevo Horario</h4>
+      </div>
+      <div class="modal-body">
+
+         <form id="horariofrm">
+            <label>Nombre:</label>
+            <input class="form-control" type="text" name="nombre" >
+            <label>Descripción:</label>
+            <textarea class="form-control" name="descripcion" rows="3"></textarea>
+            <label>Dias:</label>
+            <div id="days-list" class="col-sm-12">
+               <a data-day="1" class="day-option">Lunes</a>
+               <a data-day="2" class="day-option">Martes</a>
+               <a data-day="3" class="day-option">Miercoles</a>
+               <a data-day="4" class="day-option">Jueves</a>
+               <a data-day="5" class="day-option">Viernes</a>
+               <a data-day="6" class="day-option">Sabado</a>
+               <a data-day="7" class="day-option">Domingo</a>
+            </div>
+            <input id="days-chose" class="form-control" type="text" name="days" >
+            <label>Inicio:</label>
+            <input class="form-control" type="text" id="time1" name="tiempo1">
+            <label>Final:</label>
+            <input class="form-control" type="text" id="time2" name="tiempo2">
+            <label>Dividir Entre:</label>
+            <select class="form-control" name="minutos">
+                <option></option>
+                <option value="35">35 Minutos</option>
+                <option value="45">45 minutos</option>
+                <option value="60">1 Hora</option>
+            </select>
+         </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="create-horario btn btn-success"><i class="fa fa-calendar-check-o"></i> Crear</button>
+        <button type="button" class="cancel-new btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
+      </div>
     </div>
   </div>
 </div>
+<!-- modal nuevo horario -->
 
 
+<!-- append modal set data -->
+<div class="modal fade" id="DataEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close canceltask" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
+        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-thumb-tack"></i> Agregar Tarea</h4>
+      </div>
+      <div class="modal-body">
 
-<div class="container">
-<div class="clearfix"></div>
-<br>
-    <div class="row">
-            <div class="col-lg-12 text-center">
-                <p class="lead"></p>
-                <div class="clearfix"></div>
-                <br>
-                <div id="calendar" class="col-centered">
-                </div>
-            </div>
+        <form id="taskfrm">
+           <label>Tarea</label>
+           <input class="form-control" type="text" id="nametask" >
+           <label>Color:</label>
+           <select class="form-control" id="idcolortask">
+              <option value="purple-label">Purpura</option>
+              <option value="red-label">Rojo</option>
+              <option value="blue-label">Azul</option>
+              <option value="pink-label">Rosa</option>
+              <option value="green-label">Verde</option>
+           </select>
+          <input id="tede" type="hidden" name="tede" >
+        </form>
 
-        </div>
-        <!-- /.row -->
-
-        <!-- Modal -->
-        <div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <form class="form-horizontal">
-            <form name="frmEmployees" class="form-horizontal" novalidate="" enctype="multipart/form-data">
-
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Add Event</h4>
-              </div>
-              <div class="modal-body">
-
-                  <div class="form-group">
-                    <label for="start" class="col-sm-2 control-label">Fecha</label>
-                    <div class="col-sm-10">
-                      <input type="text" name="start" class="form-control" id="start">
-                    </div>
-                  </div>
-
-                <div class="form-group">
-                 <label class="col-md-3 control-label">Fecha a Restringir</label>
-                  <div class="col-md-5">
-                   <input class="datepicker" data-date-format="dd/mm/yyyy" name="Fecha_nac"  required>
-                  </div>
-                </div>
-
-
-
-
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="submit" onclick="guardar()" class="btn btn-primary">Guardar</button>
-              </div>
-              </form>
-
-            </div>
-          </div>
-        </div>
-
-
-        <!-- Modal -->
-        <div class="modal fade" id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <form class="form-horizontal" method="POST" action="editEventTitle.php">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Edit Event</h4>
-              </div>
-              <div class="modal-body">
-
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                          <div class="checkbox">
-                            <label class="text-danger"><input type="checkbox"  name="delete"> Delete event</label>
-                          </div>
-                        </div>
-                    </div>
-
-                  <input type="hidden" name="id" class="form-control" id="id">
-
-
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
-              </div>
-            </form>
-            </div>
-          </div>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="savetask btn btn-success"><i class="fa fa-floppy-o"></i> kkkkkkkkkkkk</button>
+        <button type="button" class="canceltask btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
       </div>
     </div>
-    <!-- /.container -->
-
-    <!-- jQuery Version 1.11.1 -->
-    <script src="{{ asset('js2/jquery-1.10.2.min.js') }}"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{{ asset('vendors/bootstrap/js/bootstrap.min.js') }}"></script>
-    <!-- FullCalendar -->
-    <script src='{{ asset('lib/moment.min.js') }}'></script>
-    <script src='{{ asset('fullcalendar/fullcalendar.min.js') }}'></script>
-
-
-    <script>
-
-
-
-    $(document).ready(function() {
-
-
-
-        $('#calendar').fullCalendar({
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'mes'
-
-
-            },
-            defaultDate: Date.now(),
-            editable: true,
-            eventLimit: 1, // allow "more" link when too many events
-            selectable: true,
-            selectHelper: true,
-            slotEventOverlap: false,
-
-            dayClick: function(date, jsEvent, view) {
-                // $(this).css('background-color', 'blue');
-              // $(this).css('pointer-events', 'none');
+  </div>
+</div>
+<!-- append modal set data -->
 
 
 
 
-
-                // $('#ModalAdd #start').val(moment(start).format('YYYY-MM-DD HH:mm:ss'));
-                // $('#ModalAdd #end').val(moment(end).format('YYYY-MM-DD HH:mm:ss'));
-                var dataClick =  date.format();
-                var color = $(this).css("background-color");
-                alert(color);
-                //alert('Clicked on: ' + start.format());
-                //field.css('background-color') === '#ffb100'
-                if($(this).css('background-color')  === 'rgb(0, 0, 255)'){
-                  alert("es azul")
-                }
-                else
-                {
-                  $(this).css('background-color', 'blue')
-                $.ajax({
-                    url: base + '/api/v13/agendamiento/crearagenda',
-                    type: 'POST',
-                    dataType: 'JSON',
-                    data: {param1: 1, param2:dataClick},
-                }).success(function(data){
+<!-- alert danger -->
+<div id="alert-error"><i class="fa fa-times fa-2x"></i></div>
+<!-- alert danger -->
 
 
+    <script src="{{ asset('horario/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('horario/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('horario/js/moment-with-locales.js') }}"></script>
+    <script src="{{ asset('horario/js/bootstrap-datetimepicker.js') }}"></script>
+    <!-- validate -->
+    <script src="{{ asset('horario/js/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('horario/js/additional-methods.min.js') }}"></script>
+    <!-- script -->
+    <script src="{{ asset('horario/js/script.js') }}"></script>
 
-
-                });
-              }
-            },
-            eventRender: function(event, element) {
-                element.bind('dblclick', function() {
-                    $('#ModalEdit #id').val(event.id);
-                    $('#ModalEdit #title').val(event.title);
-                    $('#ModalEdit #color').val(event.color);
-                    $('#ModalEdit').modal('show');
-                });
-            },
-            eventDrop: function(event, delta, revertFunc) { // si changement de position
-
-                edit(event);
-
-            },
-
-            eventResize: function(event,dayDelta,minuteDelta,revertFunc) { // si changement de longueur
-
-                edit(event);
-
-            },
-
-events: [
-
-        <?php foreach($agenda as $agend):
-
-                $start = explode(" ", $agend['start']);
-                if($start[1] == '00:00:00'){
-                    $start = $start[0];
-                }else{
-                    $start = $event['start'];
-
-                }
-                 ?>
-                {
-                  start: '<?php echo $start; ?>',
-                  overlap: false,
-                  rendering: 'background',
-                  color: 'blue',
-                  slotEventOverlap: false
-
-                },
-            <?php endforeach; ?>
-
-            ]
-
-
-        });
-
-        function edit(event){
-            start = event.start.format('YYYY-MM-DD HH:mm:ss');
-            if(event.end){
-                end = event.end.format('YYYY-MM-DD HH:mm:ss');
-            }else{
-                end = start;
-            }
-
-            id =  event.id;
-
-            Event = [];
-            Event[0] = id;
-            Event[1] = start;
-            Event[2] = end;
-
-            $.ajax({
-             url: 'editEventDate.php',
-             type: "POST",
-             data: {Event:Event},
-             success: function(rep) {
-                    if(rep == 'OK'){
-                        alert('Saved');
-                    }else{
-                        alert('Could not be saved. try again.');
-                    }
-                }
-            });
-        }
-
-    });
-
-</script>
-<script src="{{ asset('js2/agendadoctor.js') }}"></script>
-@section('js')
-<script type="text/javascript">
-  $.fn.datepicker.defaults.format = "mm/dd/yyyy";
-  $('.datepicker').datepicker({
-  startDate: '-3d'
- });
-</script>
-@endsection
-@stop
+  </body>
+</html>

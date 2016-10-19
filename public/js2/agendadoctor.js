@@ -3,7 +3,6 @@ document.getElementById('medico').addEventListener('change', function(){
 
 });
 
-alert('Clicked on: ' + start.format());
 
 var guardar = function(){
 
