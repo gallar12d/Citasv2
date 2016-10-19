@@ -135,6 +135,29 @@ document.getElementById('medicos').addEventListener('change', function(){
 
     }).success(function(data){
 
+      //console.log(data);
+    var otro =  $(".pignose-calendar-body div").prev().attr('data');
+    console.log(otro);
+
+ //      $(".pignose-calendar-body div[data-date]").each(function(index) {
+ //          var algo = $(this);
+ //        //  var aText = $(this).find("div[data-date]").attr();
+ //            //console.log(algo);
+ // //alert(aText);
+ // //return aText;
+ //
+ //
+ //        //  arrayMe[index] = $(this).text();
+ //          // algo
+ //
+ //          // $(this).removeClass();
+ //          // $(this).addClass("parrafo");
+ //          // $(this).text('Parrafo ' + index);
+ //        })
+
+  //  var munic = $('#municipio').empty();
+
+
     "events": [{
   "month": "10",
   "day": "19",

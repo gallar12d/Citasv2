@@ -22,6 +22,7 @@
 </div>
 
 
+
 <div class="container">
 <div class="clearfix"></div>
 <br>
@@ -56,6 +57,16 @@
                       <input type="text" name="start" class="form-control" id="start">
                     </div>
                   </div>
+
+                <div class="form-group">
+                 <label class="col-md-3 control-label">Fecha a Restringir</label>
+                  <div class="col-md-5">
+                   <input class="datepicker" data-date-format="dd/mm/yyyy" name="Fecha_nac"  required>
+                  </div>
+                </div>
+
+
+
 
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -114,7 +125,10 @@
 
     <script>
 
+
+
     $(document).ready(function() {
+
 
 
         $('#calendar').fullCalendar({
@@ -125,16 +139,46 @@
 
 
             },
-            defaultDate: '2016-01-12',
+            defaultDate: Date.now(),
             editable: true,
-            eventLimit: true, // allow "more" link when too many events
+            eventLimit: 1, // allow "more" link when too many events
             selectable: true,
             selectHelper: true,
-            select: function(start, end) {
+            slotEventOverlap: false,
 
-                $('#ModalAdd #start').val(moment(start).format('YYYY-MM-DD HH:mm:ss'));
-                $('#ModalAdd #end').val(moment(end).format('YYYY-MM-DD HH:mm:ss'));
-                $('#ModalAdd').modal('show');
+            dayClick: function(date, jsEvent, view) {
+                // $(this).css('background-color', 'blue');
+              // $(this).css('pointer-events', 'none');
+
+
+
+
+
+                // $('#ModalAdd #start').val(moment(start).format('YYYY-MM-DD HH:mm:ss'));
+                // $('#ModalAdd #end').val(moment(end).format('YYYY-MM-DD HH:mm:ss'));
+                var dataClick =  date.format();
+                var color = $(this).css("background-color");
+                alert(color);
+                //alert('Clicked on: ' + start.format());
+                //field.css('background-color') === '#ffb100'
+                if($(this).css('background-color')  === 'rgb(0, 0, 255)'){
+                  alert("es azul")
+                }
+                else
+                {
+                  $(this).css('background-color', 'blue')
+                $.ajax({
+                    url: base + '/api/v13/agendamiento/crearagenda',
+                    type: 'POST',
+                    dataType: 'JSON',
+                    data: {param1: 1, param2:dataClick},
+                }).success(function(data){
+
+
+
+
+                });
+              }
             },
             eventRender: function(event, element) {
                 element.bind('dblclick', function() {
@@ -172,7 +216,8 @@ events: [
                   start: '<?php echo $start; ?>',
                   overlap: false,
                   rendering: 'background',
-                  color: 'red'
+                  color: 'blue',
+                  slotEventOverlap: false
 
                 },
             <?php endforeach; ?>
