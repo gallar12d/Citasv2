@@ -1,19 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Horarios | JHCodes</title>
-    <!-- Bootstrap -->
-    <link href='https://fonts.googleapis.com/css?family=Maven+Pro' rel='stylesheet' type='text/css'>
-    <link href="{{ asset('horario/style.css') }}" rel="stylesheet">
-  </head>
-  <body>
+@extends('admin.template.main4')
+@section('title', 'Lista de Afiliaciones')
+@section('content')
+
+<link href="{{ asset('horario/style.css') }}" rel="stylesheet">
+
+ <div class = 'container'>
+   <div class="clearfix"></div>
+    <br>
     <!-- menu -->
     <div id="menu" class="col-md-12 text-right">
       <div class="container">
-          <a class="btn btn-primary" href="lista.php"><i class="fa fa-calendar" aria-hidden="true"></i> Lista de Horarios</a>
+          <a class="btn btn-primary" href="agendamiento/lista"><i class="fa fa-calendar" aria-hidden="true"></i> Lista de Horarios</a>
           <button class="btn btn-warning" data-toggle="modal" data-target="#myModal"><i class="fa fa-calendar-check-o"></i> Nuevo Horario</button>
       </div>
     </div>
@@ -107,7 +104,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="savetask btn btn-success"><i class="fa fa-floppy-o"></i> kkkkkkkkkkkk</button>
+        <button type="button" class="savetask btn btn-success"><i class="fa fa-floppy-o"></i> Guardar</button>
         <button type="button" class="canceltask btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
       </div>
     </div>
@@ -117,21 +114,16 @@
 
 
 
-
 <!-- alert danger -->
 <div id="alert-error"><i class="fa fa-times fa-2x"></i></div>
 <!-- alert danger -->
+</div>
+@section('js')
+
+<script src="{{ asset('horario/js/script.js') }}"></script>
+
+@endsection
 
 
-    <script src="{{ asset('horario/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('horario/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('horario/js/moment-with-locales.js') }}"></script>
-    <script src="{{ asset('horario/js/bootstrap-datetimepicker.js') }}"></script>
-    <!-- validate -->
-    <script src="{{ asset('horario/js/jquery.validate.min.js') }}"></script>
-    <script src="{{ asset('horario/js/additional-methods.min.js') }}"></script>
-    <!-- script -->
-    <script src="{{ asset('horario/js/script.js') }}"></script>
+@stop
 
-  </body>
-</html>

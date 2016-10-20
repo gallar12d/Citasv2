@@ -13,7 +13,7 @@ $('.verhorario').on('click', function(){
 
    $.ajax({
        type: 'POST',
-       url: 'include/process.php',
+       url: 'horario/include/process.php',
        data: processsend,
        beforeSend: function(){
          $('#appenddata').html(' ');
@@ -22,7 +22,7 @@ $('.verhorario').on('click', function(){
        	 $('#appenddata').html(data);
        	 $('#ViewHorario').modal('show');
 //----------------------------------------------------------------------------------------------
-                
+
                 // Mostrar Boton Add
                 $(".td-line").hover(
                   function() {
@@ -73,7 +73,7 @@ $('.verhorario').on('click', function(){
                          element.addClass('animated bounceOut');
                          setTimeout(function(){element.remove();},1000);
                 });
-                
+
 
                 $('.changethetime').on('click', function(){
                      var theparent = $(this).attr('data-time');
@@ -101,12 +101,12 @@ $('.verhorario').on('click', function(){
 
                 $('.canceledit').on('click', function(){
                      $('.hideedittime').hide();
-                     $('.timeblock').show();   
+                     $('.timeblock').show();
                 });
 
 
                 $('.guardarhorario').on('click', function(){
-                    
+
                     var btnsave = $(this);
                     var descripcion = $('#descripcioninput').val();
                     var nombre = $('#nombreinput').val();
@@ -117,7 +117,7 @@ $('.verhorario').on('click', function(){
                     $.ajax({
 
                         type: 'POST',
-                        url: 'include/process.php',
+                        url: 'horario/include/process.php',
                         data: horariodata,
                         beforeSend: function(){
                             btnsave.prop('disabled', true);
@@ -149,7 +149,7 @@ $('.verhorario').on('click', function(){
 
 
 $('.delhorario').on('click', function(){
-  
+
    var horario = $(this).attr('data-id');
    var horariodata = 'process=5&dataid='+horario;
    var elemento = $('#trhorario'+horario);
@@ -157,7 +157,7 @@ $('.delhorario').on('click', function(){
    $.ajax({
 
        type: 'POST',
-       url: 'include/process.php',
+       url: 'horario/include/process.php',
        data: horariodata,
         beforeSend: function(){
            elemento.find('button').prop('disabled', true);
@@ -169,7 +169,7 @@ $('.delhorario').on('click', function(){
         },
         error: function(){
             novalid();
-        }   
+        }
 
    });
 });

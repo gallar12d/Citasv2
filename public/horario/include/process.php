@@ -30,7 +30,7 @@ echo'
 <thead class="thead">
 <th class="horarioheader"><i class="fa fa-clock-o"></i> Horario</th>
 ';
-for ($i=0; $i < $countdays; $i++) { 
+for ($i=0; $i < $countdays; $i++) {
  if ($dias[$i] == 1) {
  	echo '<th><i class="fa fa-angle-right"></i> Lunes</th>';
  }elseif ($dias[$i] == 2){
@@ -84,7 +84,7 @@ echo '<tr id="tr'.sha1($in).'">
 
 </td>';
 
-for ($i=1; $i < $columnas; $i++) { 
+for ($i=1; $i < $columnas; $i++) {
 	echo'
        <td class="td-line">
          <div id="'.$reverse.$i.'" class="col-sm-12 nopadding"></div>
@@ -103,7 +103,7 @@ sumtime($format24,$fin,$minutos,$columnas);
 
 function sumtime($in,$fin,$minutos,$columnas){
 $parse1 = new DateTime($in);
-$parse2 = new DateTime($fin);   
+$parse2 = new DateTime($fin);
 if ($parse2 <= $parse1){
   return;
 }else{
@@ -128,19 +128,19 @@ echo '<tr id="tr'.sha1($in).'">
 </div>
 
 </td>';
-for ($i=1; $i < $columnas; $i++) { 
+for ($i=1; $i < $columnas; $i++) {
 	echo'
        <td class="td-line">
          <div  id="'.$reverse.$i.'" class="col-sm-12 nopadding"></div>
          <div class="col-sm-12 text-center">
-            <button id="edit-'.$reverse.$i.'" data-row="'.$reverse.$i.'" class="addinfo btn btn-xs btn-primary"><i class="fa fa-plus"></i></button>      
+            <button id="edit-'.$reverse.$i.'" data-row="'.$reverse.$i.'" class="addinfo btn btn-xs btn-primary"><i class="fa fa-plus"></i></button>
          </div>
       </td>
 	';
 }
 echo'</tr>';
     resum($format24,$fin,$minutos,$columnas);
-  }          
+  }
 }
 ///////////////////////////////////////////////////////
 sumtime($inicio24,$final24,$_POST['minutos'],$countdays);
@@ -150,7 +150,7 @@ echo '</tbody></table>
 <input type="hidden" id="descripcioninput" value="'.$_POST['descripcion'].'">
 <input type="hidden" id="nombreinput" value="'.$_POST['nombre'].'">
 
-<button class="guardarhorario btn btn-lg btn-warning pull-right"><i class="fa fa-floppy-o"></i> Guardar</button>
+<button class="guardarhorario btn btn-lg btn-warning pull-right"><i class="fa fa-floppy-o"></i> Guardarhh</button>
 
 ';
 
