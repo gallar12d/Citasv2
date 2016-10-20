@@ -1,19 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Horarios | JHCodes</title>
-    <!-- Bootstrap -->
-    <link href='https://fonts.googleapis.com/css?family=Maven+Pro' rel='stylesheet' type='text/css'>
-    <link href="{{ asset('horario/style.css') }}" rel="stylesheet">
-  </head>
-  <body>
+@extends('admin.template.main4')
+@section('title', 'Lista de Afiliaciones')
+@section('content')
+
+<link href="{{ asset('horario/style.css') }}" rel="stylesheet">
+<link rel='stylesheet' type='text/css' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/smoothness/jquery-ui.css' />
+<link rel='stylesheet' type='text/css' href='{{ asset('calendarWeek/jquery.weekcalendar.css') }}' />
+
+
+ <div class = 'container'>
+   <div class="clearfix"></div>
+    <br>
     <!-- menu -->
     <div id="menu" class="col-md-12 text-right">
       <div class="container">
-          <a class="btn btn-primary" href="lista.php"><i class="fa fa-calendar" aria-hidden="true"></i> Lista de Horarios</a>
+          <a class="btn btn-primary" href="agendamiento/lista"><i class="fa fa-calendar" aria-hidden="true"></i> Lista de Horarios</a>
           <button class="btn btn-warning" data-toggle="modal" data-target="#myModal"><i class="fa fa-calendar-check-o"></i> Nuevo Horario</button>
       </div>
     </div>
@@ -40,6 +40,8 @@
         <h4 class="modal-title" id="myModalLabel"><i class="fa fa-calendar"></i> Nuevo Horario</h4>
       </div>
       <div class="modal-body">
+<!-- calendario semanal -->
+
 
          <form id="horariofrm">
             <label>Nombre:</label>
@@ -47,14 +49,15 @@
             <label>Descripción:</label>
             <textarea class="form-control" name="descripcion" rows="3"></textarea>
             <label>Dias:</label>
+              <div id='calendar'></div>
             <div id="days-list" class="col-sm-12">
-               <a data-day="1" class="day-option">Lunes</a>
-               <a data-day="2" class="day-option">Martes</a>
-               <a data-day="3" class="day-option">Miercoles</a>
-               <a data-day="4" class="day-option">Jueves</a>
-               <a data-day="5" class="day-option">Viernes</a>
-               <a data-day="6" class="day-option">Sabado</a>
-               <a data-day="7" class="day-option">Domingo</a>
+               <a data-day="1" class="day-option">01/02/2016</a>
+               <a data-day="3" class="day-option">02/02/2016</a>
+               <a data-day="4" class="day-option">Miercoles</a>
+               <a data-day="5" class="day-option">Jueves</a>
+               <a data-day="05/02/2016" class="day-option">Viernes</a>
+               <a data-day="06/02/2016" class="day-option">Sabado</a>
+               <a data-day="07/02/2016" class="day-option">Domingo</a>
             </div>
             <input id="days-chose" class="form-control" type="text" name="days" >
             <label>Inicio:</label>
@@ -107,31 +110,106 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="savetask btn btn-success"><i class="fa fa-floppy-o"></i> kkkkkkkkkkkk</button>
+        <button type="button" class="savetask btn btn-success"><i class="fa fa-floppy-o"></i> Guardar</button>
         <button type="button" class="canceltask btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
       </div>
     </div>
   </div>
 </div>
 <!-- append modal set data -->
-
-
-
-
 <!-- alert danger -->
 <div id="alert-error"><i class="fa fa-times fa-2x"></i></div>
 <!-- alert danger -->
+</div>
+@section('js')
+<script src="{{ asset('horario/js/script.js') }}"></script>
+<script type='text/javascript'>
 
 
-    <script src="{{ asset('horario/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('horario/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('horario/js/moment-with-locales.js') }}"></script>
-    <script src="{{ asset('horario/js/bootstrap-datetimepicker.js') }}"></script>
-    <!-- validate -->
-    <script src="{{ asset('horario/js/jquery.validate.min.js') }}"></script>
-    <script src="{{ asset('horario/js/additional-methods.min.js') }}"></script>
-    <!-- script -->
-    <script src="{{ asset('horario/js/script.js') }}"></script>
+	var year = new Date().getFullYear();
+	var month = new Date().getMonth();
+	var day = new Date().getDate();
 
-  </body>
-</html>
+	var eventData = {
+		events : [
+		   {"id":1, "start": new Date(year, month, day, 12), "end": new Date(year, month, day, 13, 35),"title":"Lunch with Mike"},
+		   {"id":2, "start": new Date(year, month, day, 14), "end": new Date(year, month, day, 14, 45),"title":"Dev Meeting"},
+		   {"id":3, "start": new Date(year, month, day + 1, 18), "end": new Date(year, month, day + 1, 18, 45),"title":"Hair cut"},
+		   {"id":4, "start": new Date(year, month, day - 1, 8), "end": new Date(year, month, day - 1, 9, 30),"title":"Team breakfast"},
+		   {"id":5, "start": new Date(year, month, day + 1, 14), "end": new Date(year, month, day + 1, 15),"title":"Product showcase"}
+		]
+	};
+
+
+
+	$(document).ready(function() {
+
+		$('#calendar').weekCalendar({
+			timeslotsPerHour: 4,
+			height: function($calendar){
+				return $(window).height() - $("h1").outerHeight();
+			},
+			eventRender : function(calEvent, $event) {
+				if(calEvent.end.getTime() < new Date().getTime()) {
+					$event.css("backgroundColor", "#aaa");
+					$event.find(".time").css({"backgroundColor": "#999", "border":"1px solid #888"});
+				}
+			},
+			eventNew : function(calEvent, $event) {
+				displayMessage("<strong>Added event</strong><br/>Start: " + calEvent.start + "<br/>End: " + calEvent.end);
+				alert("You've added a new event. You would capture this event, add the logic for creating a new event with your own fields, data and whatever backend persistence you require.");
+			},
+			eventDrop : function(calEvent, $event) {
+				displayMessage("<strong>Moved Event</strong><br/>Start: " + calEvent.start + "<br/>End: " + calEvent.end);
+			},
+			eventResize : function(calEvent, $event) {
+				displayMessage("<strong>Resized Event</strong><br/>Start: " + calEvent.start + "<br/>End: " + calEvent.end);
+			},
+			eventClick : function(calEvent, $event) {
+				displayMessage("<strong>Clicked Event</strong><br/>Start: " + calEvent.start + "<br/>End: " + calEvent.end);
+			},
+			eventMouseover : function(calEvent, $event) {
+				displayMessage("<strong>Mouseover Event</strong><br/>Start: " + calEvent.start + "<br/>End: " + calEvent.end);
+			},
+			eventMouseout : function(calEvent, $event) {
+				displayMessage("<strong>Mouseout Event</strong><br/>Start: " + calEvent.start + "<br/>End: " + calEvent.end);
+			},
+			noEvents : function() {
+				displayMessage("There are no events for this week");
+			},
+			data:eventData
+		});
+
+		function displayMessage(message) {
+			$("#message").html(message).fadeIn();
+		}
+
+		$("<div id=\"message\" class=\"ui-corner-all\"></div>").prependTo($("body"));
+
+	});
+
+</script>
+
+
+	<script type="text/javascript">
+	$(document).ready(function() {
+  $('.wc-scrollable-grid').remove();
+
+
+	$(".wc-day-column-header").click(function(){
+		var texto = $(this).text();
+		var str = "Hello world!";
+var res = texto.slice(-10);
+    alert(res);
+});
+});
+
+	</script>
+
+
+
+
+@endsection
+
+
+@stop

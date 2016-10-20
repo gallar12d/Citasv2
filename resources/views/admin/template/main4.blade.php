@@ -721,39 +721,34 @@
                         </div>
                      </div>
                    </div>
-
-
-
-
-                        </div>
-                    </div>
                 </div>
+                </div>
+              </div>
 
 
 
  @include('admin.template.footer')
-
 <script src='{{ asset('lib/moment.min.js') }}'></script>
 <script src="{{ asset('js2/jquery-1.10.2.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('demo2/js/jquery.latest.min.js') }}"></script>
-    <script src="{{ asset('vendors/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('demo2/js/prism.min.js') }}"></script>
-    <script src='{{ asset('lib/moment.min.js') }}'></script>
-    <script type="text/javascript" src="{{ asset('src2/js/pignose.calendar.js') }}"></script>
-
+<script type="text/javascript" src="{{ asset('demo2/js/jquery.latest.min.js') }}"></script>
+<script src="{{ asset('vendors/bootstrap/js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('demo2/js/prism.min.js') }}"></script>
+<script src='{{ asset('lib/moment.min.js') }}'></script>
+<script type="text/javascript" src="{{ asset('src2/js/pignose.calendar.js') }}"></script>
 <script src='{{ asset('fullcalendar/fullcalendar.min.js') }}'></script>
 <script src="{{ asset('vendors/moment/moment.js') }}"></script>
+<!--scripts para las citas borrar si genera errores-->
+
+<script src="{{ asset('js2/jquery-1.10.2.min.js') }}"></script>
+<script src="{{ asset('vendors/bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('horario/js/moment-with-locales.js') }}"></script>
+<script src="{{ asset('horario/js/bootstrap-datetimepicker.js') }}"></script>
+<script src="{{ asset('horario/js/jquery.validate.min.js') }}"></script>
+<script src="{{ asset('horario/js/additional-methods.min.js') }}"></script>
+<script src="{{ asset('horario/js/script.js') }}"></script>
+<!--Terminan scripts para las citas borrar si genera errores-->
 <script src="{{ asset('js2/jquery-migrate-1.2.1.min.js') }}"></script>
 <script src="{{ asset('js2/jquery-ui.js') }}"></script>
-<!--loading bootstrap js-->
-
-
-
-
-
-
-
-
 <script src="{{ asset('vendors/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js') }}"></script>
 <script src="{{ asset('js2/html5shiv.js') }}"></script>
 <script src="{{ asset('js2/respond.min.js') }}"></script>
@@ -770,7 +765,6 @@
 <script src="{{ asset('vendors/responsive-tabs/responsive-tabs.js') }}"></script>
 <script src="{{ asset('vendors/jquery-news-ticker/jquery.newsTicker.min.js') }}"></script>
 <script src="{{ asset('vendors/moment/moment.js') }}"></script>
-
 <script src="{{ asset('vendors/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
 <script src="{{ asset('vendors/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 <!--CORE JAVASCRIPT-->
@@ -921,36 +915,12 @@ AngularJS Application Scripts
     </script>
 
 
+
+
+
 @yield('js')
 
 
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

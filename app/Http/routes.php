@@ -63,14 +63,14 @@ Route::post('/api/v13/agendamiento/crearagendamiento',
 'AgendadoctorController@crearAgendamiento');
 Route::post('/api/v13/agendamiento/obtenerHorario',
 'AgendadoctorController@obtenerHorario');
-
 Route::post('agendamiento', [ 'as' => 'doctores.agendamiento', 'uses' => 'AgendadoctorController@agendamiento' ]);
-
 Route::post('/api/v13/agendamiento/crearagenda',
 'AgendadoctorController@creacion');
-
-
-
+Route::post('/api/v13/agendamiento/creacionagenda',
+'AgendadoctorController@creacionagenda');
+Route::post('/api/v13/agendamiento/insertaragenda',
+'AgendadoctorController@insertaragenda');
+Route::resource('lista','AgendadoctorController@lista');
 
 
 Route::post('/api/medico/obtenermunic',

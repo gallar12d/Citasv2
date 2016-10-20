@@ -5,13 +5,13 @@ class Conexion
 {
     private static $instancia;
     private $dbh;
- 
+
     private function __construct()
     {
         try {
 
             $host = 'localhost';
-            $db =   'horarioescolar';
+            $db =   'citasmedicas';
             $user = 'root';
             $pwd =  '';
             $this->dbh = new PDO('mysql:host='.$host.';dbname='.$db, $user, $pwd);
@@ -31,7 +31,7 @@ class Conexion
         return $this->dbh->prepare($sql);
 
     }
- 
+
     public static function singleton_conexion()
     {
 
@@ -42,7 +42,7 @@ class Conexion
         }
 
         return self::$instancia;
-        
+
     }
 
 

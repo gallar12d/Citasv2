@@ -56,8 +56,7 @@ function horariostable($page){
                 <td>'.$key['descripcion'].'</td>
                 <td>'.$fecha.'</td>
                 <td>
-                  <button data-id="'.$key['id'].'" class="verhorario btn btn-sm btn-success"><i class="fa fa-pencil-square-o"></i> Ver Horario</button>
-                  <a target="_blank" href="imprimir.php?horario='.$key['id'].'" class="imprimir btn btn-sm btn-warning"><i class="fa fa-print"></i> Imprimir</a>
+                  <button data-id="'.$key['id'].'" class="verhorario btn btn-sm btn-success"><i class="fa fa-pencil-square-o"></i> Ver Horarisso</button>
                   <button data-id="'.$key['id'].'" class="delhorario btn btn-sm btn-danger"><i class="fa fa-times"></i> Eliminar</button>
                 </td>
               </tr>
@@ -78,10 +77,10 @@ echo'
 ';
 
 // mostramos la paginación
-for ($i=1; $i <= $totalpaginas; $i++) { 
+for ($i=1; $i <= $totalpaginas; $i++) {
 
     // para identificar la página actual, le agregamos una clase
-    // para darle un estilo diferente 
+    // para darle un estilo diferente
     if($i == $paginaActual){
         echo '<a class="btn btn-warning active">'.$i.'</a>';
     }
@@ -127,7 +126,7 @@ if (empty($resultados)){
    foreach ($resultados as $key){
 
        echo $key['horario'];
-       
+
    }
-  }  
+  }
 }
