@@ -443,6 +443,7 @@ class ComposerStaticInitd0fa26ad9d7818c22637c4d210cbc38c
         'CreateAgendamientosTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_18_143749_create_agendamientos_table.php',
         'CreateDepartamentosTable' => __DIR__ . '/../..' . '/database/migrations/2016_09_25_181429_create_departamentos_table.php',
         'CreateEspecialidadesTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_11_154827_create_especialidades_table.php',
+        'CreateHorariosTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_19_215546_create_horarios_table.php',
         'CreateImagesTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_15_181644_create_images_table.php',
         'CreateMedicoEspecialidadTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_15_061403_create_medico_especialidad_table.php',
         'CreateMunicipiosTable' => __DIR__ . '/../..' . '/database/migrations/2016_09_25_181753_create_municipios_table.php',

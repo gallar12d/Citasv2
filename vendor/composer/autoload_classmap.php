@@ -43,6 +43,7 @@ return array(
     'CreateAgendamientosTable' => $baseDir . '/database/migrations/2016_10_18_143749_create_agendamientos_table.php',
     'CreateDepartamentosTable' => $baseDir . '/database/migrations/2016_09_25_181429_create_departamentos_table.php',
     'CreateEspecialidadesTable' => $baseDir . '/database/migrations/2016_10_11_154827_create_especialidades_table.php',
+    'CreateHorariosTable' => $baseDir . '/database/migrations/2016_10_19_215546_create_horarios_table.php',
     'CreateImagesTable' => $baseDir . '/database/migrations/2016_10_15_181644_create_images_table.php',
     'CreateMedicoEspecialidadTable' => $baseDir . '/database/migrations/2016_10_15_061403_create_medico_especialidad_table.php',
     'CreateMunicipiosTable' => $baseDir . '/database/migrations/2016_09_25_181753_create_municipios_table.php',
