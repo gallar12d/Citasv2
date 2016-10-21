@@ -92,7 +92,7 @@ $(function () {
         } else {
             $('#side-menu').attr('style','').parent('.slimScrollDiv').replaceWith($('#side-menu'));
         }
-        
+
         $('#theme-change').attr('href', 'css/themes/'+ style + '/' + color + '.css');
     }
     // INITIALIZE THEME FROM COOKIE
@@ -108,7 +108,7 @@ $(function () {
                     $(this).attr('selected', 'selected');
                 }
             });
-            
+
             list_style.find('option').each(function(){
                 if($(this).attr('value') == $.cookie('style')) {
                     $(this).attr('selected', 'selected');
@@ -277,7 +277,7 @@ $(function () {
             "height": "250px",
             'width': '340px',
             "wheelStep": 30,
-            "scrollTo": $(this).height() 
+            "scrollTo": $(this).height()
         });
     });
     // Add content to form
@@ -296,7 +296,7 @@ $(function () {
                 if (m < 10) m = "0" + m;
                 $obj.val(""); // CLEAR TEXT ON TEXTAREA
 
-                var $element = ""; 
+                var $element = "";
                 $element += "<li>";
                 $element += "<p>";
                 $element += "<img class='avt' src='"+$my_avt+"'>";
@@ -305,7 +305,7 @@ $(function () {
                 $element += "</p>";
                 $element = $element + "<p>" + $content +  "</p>";
                 $element += "</li>";
-                
+
                 $me.append($element);
                 var height = 0;
                 $me.find('li').each(function(i, value){
@@ -313,7 +313,7 @@ $(function () {
                 });
 
                 height += '';
-                $me.scrollTop(height);  
+                $me.scrollTop(height);
 
                 // RANDOM RESPOND CHAT
                 var $res = "";
@@ -327,7 +327,7 @@ $(function () {
                 $res += "</li>";
                 setTimeout(function(){
                     $me.append($res);
-                    $me.scrollTop(height+100);        
+                    $me.scrollTop(height+100);
                 }, 1000);
             }
         }
@@ -457,6 +457,3 @@ $(function () {
     $('.reportrange span').html(moment().subtract('days', 29).format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
     //END PLUGINS DATE RANGE PICKER
 });
-
-
-

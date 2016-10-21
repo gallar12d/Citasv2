@@ -738,7 +738,6 @@
 <script src='{{ asset('fullcalendar/fullcalendar.min.js') }}'></script>
 <script src="{{ asset('vendors/moment/moment.js') }}"></script>
 <!--scripts para las citas borrar si genera errores-->
-
 <script src="{{ asset('js2/jquery-1.10.2.min.js') }}"></script>
 <script src="{{ asset('vendors/bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('horario/js/moment-with-locales.js') }}"></script>

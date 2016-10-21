@@ -3,10 +3,8 @@ document.getElementById('medico').addEventListener('change', function(){
 
 });
 
-
+ $(this).css('background-color', 'red');
 var guardar = function(){
-
-
 var agenda = $('#start').val();
     $.ajax({
         url: base + '/api/v13/agendamiento/crearagenda',
