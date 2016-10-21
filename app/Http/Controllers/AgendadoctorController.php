@@ -58,6 +58,7 @@ if ($process == 1) {
 
 // Dias
 $dias = explode(',', $_POST['days']);
+
 // Contar dias
 $countdays = count($dias);
 

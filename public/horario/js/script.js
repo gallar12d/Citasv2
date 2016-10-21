@@ -31,14 +31,15 @@ $('#time1').datetimepicker({
 $('#time2').datetimepicker({
   format:'LT'
 });
+$("#days-list a").live("click", function() {
+       $("#days-list a").removeClass("active-day");  // remove active class from all
+       $(this).addClass("active-day");
+        // $('#days-chose').val( $(this).attr('data-day'));       // add active class to clicked element
+    });
 
 $('#days-list a').on('click', function(){
 
-              $("#days-list a").each(function() {
-               $(this).hide();
-              
 
-            })
      var dias = $(this).attr('data-day');
      var dataset = $('#days-chose');
      var addday = dataset.val();
@@ -46,12 +47,12 @@ $('#days-list a').on('click', function(){
      var dum = $(this);
      if (dum.hasClass('active-day')){
          dum.removeClass('active-day');
-         dataset.val(removeday);
+        dataset.val(dias+',');
          dataset.click();
      }else{
          dum.addClass('active-day');
-         dataset.val(addday+dias+',');
-         dataset.click();
+         dataset.val(dias+',');
+      dataset.click();
      }
 });
 
