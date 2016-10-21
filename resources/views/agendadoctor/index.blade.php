@@ -60,7 +60,9 @@
 <div class="clearfix"></div>
 <br>
      <label>Seleccione Dia en que Realiza Consulta:</label>
-       <div id='calendar'></div>
+       <div id='fechaSemana'>
+          <h1></h1>
+       </div>
         <div id="days-list" class="col-sm-12">
                <a data-day="1" class="day-option">Lunes</a>
                <a data-day="2" class="day-option">Martes</a>
@@ -142,6 +144,8 @@
 
   <script type="text/javascript">
   $(document).ready(function() {
+
+
   $('.wc-scrollable-grid').remove();
 
 

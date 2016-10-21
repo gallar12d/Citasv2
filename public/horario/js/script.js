@@ -10,6 +10,18 @@ function novalid(){
 $(document).ready(function() {
   $(window).load(function() {
 //=============================================================================
+var curr = new Date; // get current date
+var first = curr.getDate() - curr.getDay(); // First day is the day of the month - the day of the week
+var last = first + 6; // last day is the first day + 6
+
+var firstday = new Date(curr.setDate(first)).toDateString();
+var lastday = new Date(curr.setDate(last)).toDateString();
+alert (firstday + lastday);
+console.log(firstday);
+var semana = (firstday + lastday);
+
+$('#fechaSemana h1').html("Semana del "+firstday+" al "+lastday+"");
+  $('#fechaSemana h1').text("Semana del "+firstday+" al "+lastday+"");
 
 
 $('#time1').datetimepicker({
@@ -21,6 +33,12 @@ $('#time2').datetimepicker({
 });
 
 $('#days-list a').on('click', function(){
+
+              $("#days-list a").each(function() {
+               $(this).hide();
+              
+
+            })
      var dias = $(this).attr('data-day');
      var dataset = $('#days-chose');
      var addday = dataset.val();
@@ -216,7 +234,3 @@ novalid();
 //=============================================================================
     });
 });
-
-
-
-

@@ -26,6 +26,10 @@ $('.verhorario').on('click', function(){
                 // Mostrar Boton Add
                 $(".td-line").hover(
                   function() {
+
+                    var count =   $(this).find('div label').length;
+
+                  if(count == 0)
                     $(this).find('button').show();
                  },
                   function() {
@@ -39,6 +43,14 @@ $('.verhorario').on('click', function(){
                      $('#DataEdit').modal('show');
                      $('#tede').val(dum);
                 });
+
+                var curr = new Date; // get current date
+                var first = curr.getDate() - curr.getDay(); // First day is the day of the month - the day of the week
+                var last = first + 6; // last day is the first day + 6
+
+                var firstday = new Date(curr.setDate(first)).toUTCString();
+                var lastday = new Date(curr.setDate(last)).toUTCString();
+                alert (firstday + lastday);
 
 
                 // Borrar la tarea
