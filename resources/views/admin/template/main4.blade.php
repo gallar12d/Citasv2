@@ -740,6 +740,7 @@
 <!--scripts para las citas borrar si genera errores-->
 
 <script src="{{ asset('js2/jquery-1.10.2.min.js') }}"></script>
+
 <script src="{{ asset('vendors/bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('horario/js/moment-with-locales.js') }}"></script>
 <script src="{{ asset('horario/js/bootstrap-datetimepicker.js') }}"></script>
@@ -791,8 +792,12 @@ var base = "{{ url('/') }}";
 <script src="{{ asset('js/roles3.js') }}"></script>
 <script src="{{ asset('js/roles4.js') }}"></script>
 
-<!--loading bootstrap js-->
-<script src="{{ asset('vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
+<!--Borramos provicional podemos usarlo en otra vista-->
+<!-- <script src="{{ asset('vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
+ --><!--loading bootstrap js-->
+
+
+
 
 <script src="{{ asset('vendors/bootstrap-timepicker/js/bootstrap-timepicker.js') }}"></script>
 <script src="{{ asset('vendors/bootstrap-clockface/js/clockface.js') }}"></script>
@@ -913,6 +918,7 @@ AngularJS Application Scripts
     });
     //]]>
     </script>
+
 
 
 
