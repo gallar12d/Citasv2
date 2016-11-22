@@ -24,17 +24,44 @@ require_once'horario/include/functions.php';
   </head>
   <body>
    <!-- container -->
-      <div class="container" >
+   <div class="comtainer">
+     <div class="row">
+       <div class="col-md-8 col-md-offset-2"">
+         <h1 class="text-center">Bienvenido al Módulo de Citas Online del Hospital San josé</h1>
+         <h2 class="text-center">Por favor seleccione su médico de preferencia para consultar la disponibilidad de citas para esta semana</h2>
+       </div>
+     </div
+
+   </div>
+<div class="container">
+  <div class="col-lg-6 col-offset-6 centered">
+     <div>
+
+   <label>Medico:</label>
+  <select id="nombre" name="nombre" data-style="btn-primary" class="form-control">
+   <option selected value="">Seleccione...</option>
+    @foreach($medicos as $medic)
+     <option id="{{ $medic->id }}" value="{{ $medic->id }}">{{ $medic->Nombres }} {{ $medic->Apellidos }} </option>
+    @endforeach
+  </select>
+     
+
+   </div>
+  </div>
+</div>
+  
+      <div id ="listaHorarios" class="container" >
          <div class="panel panel-info" style="margin-top: 20px;">
-           <div class="panel-heading"><i class="fa fa-calendar" aria-hidden="true"></i> Listas de Horarios</div>
+           <div class="panel-heading"><i class="fa fa-calendar" aria-hidden="true"></i> Listas de Horarios </div>
            <div class="panel-body nopadding">
-                <?php
+           <?php
                     if (isset($_GET['page'])){
-                      horariostable($_GET['page']);
+                      horariostable($_GET['page'], 1);
                     }else{
-                      horariostable(1);
+                      horariostable(1, 1);
                     }
                 ?>
+            
            </div>
          </div>
       </div>
@@ -96,6 +123,7 @@ require_once'horario/include/functions.php';
     <script src="{{ asset('horario/js/additional-methods.min.js') }}"></script>
     <!-- script -->
     <script src="{{ asset('horario/js/scripts-custom.js') }}"></script>
+     <script src="{{ asset('horario/js/scripts-custom2.js') }}"></script>
 
   </body>
 </html>

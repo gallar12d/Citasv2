@@ -11,7 +11,7 @@ class Conexion
         try {
 
             $host = 'localhost';
-            $db =   'citasmedicas';
+            $db =   'hospitalesesanjose';
             $user = 'root';
             $pwd =  '';
             $this->dbh = new PDO('mysql:host='.$host.';dbname='.$db, $user, $pwd);

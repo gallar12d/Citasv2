@@ -1,187 +1,199 @@
 
 // funcion no valid
 function novalid(){
-    $('#alert-error').addClass('animated bounce').fadeIn(500);
-    setTimeout(function(){$('#alert-error').removeClass('animated bounce').fadeOut(500);},1500);
+		$('#alert-error').addClass('animated bounce').fadeIn(500);
+		setTimeout(function(){$('#alert-error').removeClass('animated bounce').fadeOut(500);},1500);
 }
+
+// si el usuario es visitante se oculta el borrar horario de lo contrario si el usuario es admin se muestra el borrar horario
+
+ //$('.delhorario').hide();
+ 
+
+
 
 
 $('.verhorario').on('click', function(){
 
-   var dataid = $(this).attr('data-id');
-   var processsend = 'process=3&data='+dataid;
+	 var dataid = $(this).attr('data-id');
+	 var processsend = 'process=3&data='+dataid;
 
-   $.ajax({
-       type: 'POST',
-       url: 'horario/include/process.php',
-       data: processsend,
-       beforeSend: function(){
-         $('#appenddata').html(' ');
-       },
-       success: function(data){
-       	 $('#appenddata').html(data);
-       	 $('#ViewHorario').modal('show');
+	 $.ajax({
+			 type: 'POST',
+			 url: 'horario/include/process.php',
+			 data: processsend,
+			 beforeSend: function(){
+				 $('#appenddata').html(' ');
+			 },
+			 success: function(data){
+				 $('#appenddata').html(data);
+				 $('#ViewHorario').modal('show');
 //----------------------------------------------------------------------------------------------
 
-                // Mostrar Boton Add
-                $(".td-line").hover(
-                  function() {
+								// Mostrar Boton Add
+								$(".td-line").hover(
+									function() {
 
-                    var count =   $(this).find('div label').length;
+										var count =   $(this).find('div label').length;
 
-                  if(count == 0)
-                    $(this).find('button').show();
-                 },
-                  function() {
-                    $(this).find('button').hide();
-                  }
-                );
+									if(count == 0)
+										$(this).find('button').show();
+								 },
+									function() {
+										$(this).find('button').hide();
+									}
+								);
 
-                // Agregar Informacion
-                $('.addinfo').on('click', function(){
-                     var dum = $(this).attr('data-row');
-                     $('#DataEdit').modal('show');
-                     $('#tede').val(dum);
-                });
+								//si el user es visitante entoces se oculta la x de la tarea que elimina la tarea 
+								$('.deltasker').hide();
+								
+								
 
-                var curr = new Date; // get current date
-                var first = curr.getDate() - curr.getDay(); // First day is the day of the month - the day of the week
-                var last = first + 6; // last day is the first day + 6
+								// Agregar Informacion
+								$('.addinfo').on('click', function(){
+										 var dum = $(this).attr('data-row');
+										 $('#DataEdit').modal('show');
+										 $('#tede').val(dum);
+								});
 
-                var firstday = new Date(curr.setDate(first)).toUTCString();
-                var lastday = new Date(curr.setDate(last)).toUTCString();
-                alert (firstday + lastday);
+								var curr = new Date; // get current date
+								var first = curr.getDate() - curr.getDay(); // First day is the day of the month - the day of the week
+								var last = first + 6; // last day is the first day + 6
 
-
-                // Borrar la tarea
-                $('.delinfo').on('click', function(){
-                     var dum = $(this).attr('data-row');
-                     $('#'+dum).text('').removeClass('purple-label red-label blue-label pink-label').hide();
-                });
+								var firstday = new Date(curr.setDate(first)).toUTCString();
+								var lastday = new Date(curr.setDate(last)).toUTCString();
+							 // alert (firstday + lastday);
 
 
-                // Guardar Tarea
-                $('.savetask').on('click', function(){
-                     var tede = $('#tede').val();
-                     var tasker = $('#nametask').val();
-                     var color = $('#idcolortask option:selected').val();
-                     $('#DataEdit').modal('toggle');
-                     $('#'+tede).append('<label class="label-desc '+color+'">'+tasker+' <a class="deltasker"><i class="fa fa-times"></i></a></label>');
-                     //$('#'+tede).text(tasker).addClass(color).show();
-                     $('#taskfrm')[0].reset();
+								// Borrar la tarea
+								$('.delinfo').on('click', function(){
+										 var dum = $(this).attr('data-row');
+										 $('#'+dum).text('').removeClass('purple-label red-label blue-label pink-label').hide();
+								});
 
 
-                     $('.deltasker').on('click', function(){
-                         var element = $(this).parent();
-                         element.addClass('animated bounceOut');
-                         setTimeout(function(){element.remove();},1000);
-                     });
-
-                });
-
-
-                $('.deltasker').on('click', function(){
-                         var element = $(this).parent();
-                         element.addClass('animated bounceOut');
-                         setTimeout(function(){element.remove();},1000);
-                });
+								// Guardar Tarea
+								$('.savetask').on('click', function(){
+										 var tede = $('#tede').val();
+										 var tasker = $('#nametask').val();
+										 var color = $('#idcolortask option:selected').val();
+										 $('#DataEdit').modal('toggle');
+										 $('#'+tede).append('<label class="label-desc '+color+'">'+tasker+' <a class="deltasker"><i class="fa fa-times"></i></a></label>');
+										 //$('#'+tede).text(tasker).addClass(color).show();
+										 $('#taskfrm')[0].reset();
 
 
-                $('.changethetime').on('click', function(){
-                     var theparent = $(this).attr('data-time');
-                     $('.hideedittime').hide();
-                     $('.timeblock').show();
-                     $('#parent'+theparent).hide();
-                     $('#edit'+theparent).show();
-                });
+										 $('.deltasker').on('click', function(){
+												 var element = $(this).parent();
+												 element.addClass('animated bounceOut');
+												 setTimeout(function(){element.remove();},1000);
+										 });
 
-                $('.savetime').on('click', function(){
-                     var savetime = $(this).attr('data-save');
-                     var datasavetime = $('#input'+savetime).val();
-                     $('#edit'+savetime).hide();
-                     $('#parent'+savetime).show();
-                     $('#data'+savetime).text(datasavetime);
-                     $('#data'+savetime).addClass('animated flash');
-                     setTimeout(function(){$('#data'+savetime).removeClass('flash');},1000);
-                });
-
-                $('.deleteblock').on('click', function(){
-                     var block = $(this).attr('data-block');
-                     $('#tr'+block).addClass('animated bounceOutLeft');
-                     setTimeout(function(){$('#tr'+block).remove();},1000);
-                });
-
-                $('.canceledit').on('click', function(){
-                     $('.hideedittime').hide();
-                     $('.timeblock').show();
-                });
+								});
 
 
-                $('.guardarhorario').on('click', function(){
+								$('.deltasker').on('click', function(){
+												 var element = $(this).parent();
+												 element.addClass('animated bounceOut');
+												 setTimeout(function(){element.remove();},1000);
+								});
 
-                    var btnsave = $(this);
-                    var descripcion = $('#descripcioninput').val();
-                    var nombre = $('#nombreinput').val();
-                    var horario = $('#edithorariotabledata').html();
-                    var iddata = $('#inputidedit').val();
-                    var horariodata = 'process=4&nombre='+nombre+'&descripcion='+descripcion+'&horario='+horario+'&id='+iddata;
 
-                    $.ajax({
+								$('.changethetime').on('click', function(){
+										 var theparent = $(this).attr('data-time');
+										 $('.hideedittime').hide();
+										 $('.timeblock').show();
+										 $('#parent'+theparent).hide();
+										 $('#edit'+theparent).show();
+								});
 
-                        type: 'POST',
-                        url: 'horario/include/process.php',
-                        data: horariodata,
-                        beforeSend: function(){
-                            btnsave.prop('disabled', true);
-                            $('#horario-name').addClass('opacityelement');
-                            $('#thetable').addClass('opacityelement');
-                        },
-                        success: function(){
-                            $('#thetable').addClass('animated bounceOut');
-                            btnsave.prop('disabled', false);
-                            setTimeout(function(){$('#ViewHorario').modal('toggle');},1000);
-                        },
-                        error: function(){
-                            novalid();
-                        }
+								$('.savetime').on('click', function(){
+										 var savetime = $(this).attr('data-save');
+										 var datasavetime = $('#input'+savetime).val();
+										 $('#edit'+savetime).hide();
+										 $('#parent'+savetime).show();
+										 $('#data'+savetime).text(datasavetime);
+										 $('#data'+savetime).addClass('animated flash');
+										 setTimeout(function(){$('#data'+savetime).removeClass('flash');},1000);
+								});
 
-                    });
+								$('.deleteblock').on('click', function(){
+										 var block = $(this).attr('data-block');
+										 $('#tr'+block).addClass('animated bounceOutLeft');
+										 setTimeout(function(){$('#tr'+block).remove();},1000);
+								});
 
-                });
+								$('.canceledit').on('click', function(){
+										 $('.hideedittime').hide();
+										 $('.timeblock').show();
+								});
+
+
+								$('.guardarhorario').on('click', function(){
+
+										var btnsave = $(this);
+										var descripcion = $('#descripcioninput').val();
+										var nombre = $('#nombreinput').val();
+										var horario = $('#edithorariotabledata').html();
+										var iddata = $('#inputidedit').val();
+										var horariodata = 'process=4&nombre='+nombre+'&descripcion='+descripcion+'&horario='+horario+'&id='+iddata;
+
+										$.ajax({
+
+												type: 'POST',
+												url: 'horario/include/process.php',
+												data: horariodata,
+												beforeSend: function(){
+														btnsave.prop('disabled', true);
+														$('#horario-name').addClass('opacityelement');
+														$('#thetable').addClass('opacityelement');
+												},
+												success: function(){
+														$('#thetable').addClass('animated bounceOut');
+														btnsave.prop('disabled', false);
+														setTimeout(function(){$('#ViewHorario').modal('toggle');},1000);
+												},
+												error: function(){
+														novalid();
+												}
+
+										});
+
+								});
 
 
 
 //----------------------------------------------------------------------------------------------
-       },
-       error: function(){
-         novalid();
-       }
-   });
+			 },
+			 error: function(){
+				 novalid();
+			 }
+	 });
 });
 
 
 $('.delhorario').on('click', function(){
 
-   var horario = $(this).attr('data-id');
-   var horariodata = 'process=5&dataid='+horario;
-   var elemento = $('#trhorario'+horario);
+	 var horario = $(this).attr('data-id');
+	 var horariodata = 'process=5&dataid='+horario;
+	 var elemento = $('#trhorario'+horario);
 
-   $.ajax({
+	 $.ajax({
 
-       type: 'POST',
-       url: 'horario/include/process.php',
-       data: horariodata,
-        beforeSend: function(){
-           elemento.find('button').prop('disabled', true);
-           elemento.addClass('opacityelement');
-        },
-        success: function(){
-           elemento.addClass('animated bounceOut');
-           setTimeout(function(){elemento.remove();},1000)
-        },
-        error: function(){
-            novalid();
-        }
+			 type: 'POST',
+			 url: 'horario/include/process.php',
+			 data: horariodata,
+				beforeSend: function(){
+					 elemento.find('button').prop('disabled', true);
+					 elemento.addClass('opacityelement');
+				},
+				success: function(){
+					 elemento.addClass('animated bounceOut');
+					 setTimeout(function(){elemento.remove();},1000)
+				},
+				error: function(){
+						novalid();
+				}
 
-   });
+	 });
 });

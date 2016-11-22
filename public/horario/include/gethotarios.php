@@ -1,16 +1,9 @@
 <?php
-include_once 'config.php';
+// include 'config.php';
+// include_once 'config.php';
+$idm = $_REQUEST['idmedico'];
+$page = 1;
 
-if(isset($_POST['idmedico']) && !empty($_POST['idmedico'])) {
-    $action = $_POST['idmedico'];
-
-    horariostable(1, $action);
-
-  
-}
-
-
-function horariostable($page, $idm){
 
          // conexion de la base de datos
          $conexion = Conexion::singleton_conexion();
@@ -43,15 +36,13 @@ function horariostable($page, $idm){
            # code...
          }else{
 
-        
-
                  echo'
                    <table class="table table-striped">
                       <thead class="messages-table-header">
                          <tr>
-                           <th><i class="fa fa-angle-double-right"></i> Nombre del médico</th>
-                           <th><i class="fa fa-angle-double-right"></i> Descripción de la Jornada</th>
-                           <th><i class="fa fa-angle-double-right"></i> Fecha de Creación</th>
+                           <th><i class="fa fa-angle-double-right"></i> Nombre</th>
+                           <th><i class="fa fa-angle-double-right"></i> Descripción</th>
+                           <th><i class="fa fa-angle-double-right"></i> Fecha</th>
                            <th><i class="fa fa-angle-double-right"></i> Acciones</th>
                          </tr>
                       </thead>
@@ -68,7 +59,7 @@ function horariostable($page, $idm){
                 <td>'.$key['descripcion'].'</td>
                 <td>'.$fecha.'</td>
                 <td>
-                  <button data-id="'.$key['id'].'" class="verhorario btn btn-sm btn-success"><i class="fa fa-pencil-square-o"></i> Ver Horario</button>
+                  <button data-id="'.$key['id'].'" class="verhorario verhorario2 btn btn-sm btn-success"><i class="fa fa-pencil-square-o"></i> Ver Horarisso</button>
                   <button data-id="'.$key['id'].'" class="delhorario btn btn-sm btn-danger"><i class="fa fa-times"></i> Eliminar</button>
                 </td>
               </tr>
@@ -121,24 +112,4 @@ echo'
 </div>
 ';
 
-}
 
-
-function printhorario($data){
-// conexion de la base de datos
-$conexion = Conexion::singleton_conexion();
-
-$SQL = 'SELECT * FROM horarios WHERE id = :id LIMIT 1';
-$sentence = $conexion -> prepare($SQL);
-$sentence -> bindParam(':id',$data,PDO::PARAM_INT);
-$sentence -> execute();
-$resultados = $sentence -> fetchAll();
-if (empty($resultados)){
-}else{
-   foreach ($resultados as $key){
-
-       echo $key['horario'];
-
-   }
-  }
-}

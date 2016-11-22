@@ -53,13 +53,12 @@
 <br>
 <label>Jornada Atención:</label>
 <select id="descripcion" name="descripcion" data-style="btn-primary" class="form-control">
-    <option>Mañana</option>
-    <option>Tarde</option>
+    <option>Única</option>    
 </select>
 
 <div class="clearfix"></div>
 <br>
-     <label>Seleccione Dia en que Realiza Consulta:</label>
+     <label>Seleccione Dias en que Realiza Consulta:</label>
        <div id='fechaSemana'>
           <h1></h1>
        </div>

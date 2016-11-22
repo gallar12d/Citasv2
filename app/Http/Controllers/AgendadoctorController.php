@@ -184,7 +184,7 @@ echo '</tbody></table>
 <input type="hidden" id="descripcioninput" value="'.$_POST['descripcion'].'">
 <input type="hidden" id="nombreinput" value="'.$_POST['nombre'].'">
 
-<button class="guardarhorario btn btn-lg btn-warning pull-right"><i class="fa fa-floppy-o"></i> Guardarhh</button>
+<button class="guardarhorario btn btn-lg btn-warning pull-right"><i class="fa fa-floppy-o"></i> Guardar</button>
 
 ';
 
@@ -246,7 +246,9 @@ foreach ($data2 as $key => $value) {
 
 public function lista()
 {
-  return view('agendadoctor.lista');
+  $medicos = Medico::all();
+    //$agenda = Agendadoctor::all();
+  return view('agendadoctor.lista', compact('medicos'));
 }
 
 

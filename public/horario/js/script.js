@@ -16,7 +16,7 @@ var last = first + 6; // last day is the first day + 6
 
 var firstday = new Date(curr.setDate(first)).toDateString();
 var lastday = new Date(curr.setDate(last)).toDateString();
-alert (firstday + lastday);
+//
 console.log(firstday);
 var semana = (firstday + lastday);
 
@@ -31,11 +31,11 @@ $('#time1').datetimepicker({
 $('#time2').datetimepicker({
   format:'LT'
 });
-$("#days-list a").live("click", function() {
-       $("#days-list a").removeClass("active-day");  // remove active class from all
-       $(this).addClass("active-day");
-        // $('#days-chose').val( $(this).attr('data-day'));       // add active class to clicked element
-    });
+// $("#days-list a").live("click", function() {
+//        $("#days-list a").removeClass("active-day");  // remove active class from all
+//        $(this).addClass("active-day");
+//         // $('#days-chose').val( $(this).attr('data-day'));       // add active class to clicked element
+//     });
 
 $('#days-list a').on('click', function(){
 
@@ -47,11 +47,11 @@ $('#days-list a').on('click', function(){
      var dum = $(this);
      if (dum.hasClass('active-day')){
          dum.removeClass('active-day');
-        dataset.val(dias+',');
+        dataset.val(removeday);
          dataset.click();
      }else{
          dum.addClass('active-day');
-         dataset.val(dias+',');
+         dataset.val(addday+dias+',');
       dataset.click();
      }
 });
@@ -65,6 +65,9 @@ $('.cancel-new').on('click', function(){
       $('#horariofrm')[0].reset();
 
 });
+
+//quitar la x de para borrar tarea
+$('.deltasker').hide();
 
 
 
