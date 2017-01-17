@@ -41,7 +41,7 @@ require_once'horario/include/functions.php';
   <select id="nombre" name="nombre" data-style="btn-primary" class="form-control">
    <option selected value="">Seleccione...</option>
     @foreach($medicos as $medic)
-     <option id="{{ $medic->id }}" value="{{ $medic->id }}">{{ $medic->Nombres }} {{ $medic->Apellidos }} </option>
+     <option id="{{ $medic->id }}" value="{{ $medic->Nombres }} {{ $medic->Apellidos }}">{{ $medic->Nombres }} {{ $medic->Apellidos }} </option>
     @endforeach
   </select>
      

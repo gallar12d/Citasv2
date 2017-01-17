@@ -13,7 +13,7 @@ function borrardelete(data){
    $('#nombre').on('change', function() {
      // alert(this.value); // or $(this).val()
       //hacemos el llamado al ajax al servidor php con valor del value
-      if (this.value > 0) {
+      // alert('asdf'+this.value+'dfas');
          $.ajax({
             data: {
                "idmedico": this.value,
@@ -59,6 +59,6 @@ function borrardelete(data){
               
             }
          });
-      }
+      
    });
 });

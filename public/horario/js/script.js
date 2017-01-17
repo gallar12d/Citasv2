@@ -196,9 +196,10 @@ if (dado == true){
 
                     var btnsave = $(this);
                     var descripcion = $('#descripcioninput').val();
+                    var tipoatencion = $('#tipoatencion').text();
                     var nombre = $('#nombreinput').val();
                     var horario = $('#mynew').html();
-                    var horariodata = 'process=2&nombre='+nombre+'&descripcion='+descripcion+'&horario='+horario;
+                    var horariodata = 'process=2&nombre='+nombre+'&descripcion='+descripcion+'&tipoatencion='+tipoatencion+'&horario='+horario;
 
                     $.ajax({
 

@@ -3,6 +3,7 @@ include_once 'config.php';
 
 if(isset($_POST['idmedico']) && !empty($_POST['idmedico'])) {
     $action = $_POST['idmedico'];
+    // echo($action);
 
     horariostable(1, $action);
 
@@ -29,10 +30,11 @@ function horariostable($page, $idm){
          $articuloInicial = ($page - 1) * $resultados;
 
          if ($page == 1) {
-            $SQL = "SELECT * FROM horarios where nombre = ".$idmedico." LIMIT 10";
+            $SQL = "SELECT * FROM horarios where nombre = '$idmedico' LIMIT 10";
+            // echo $SQL;
             $paginaActual = 1;
          }else{
-            $SQL = "SELECT * FROM horarios where nombre = ".$idmedico."  LIMIT ".$articuloInicial.", ".$resultados."";
+            $SQL = "SELECT * FROM horarios where nombre = '$idmedico'  LIMIT ".$articuloInicial.", ".$resultados."";
             $paginaActual = $page;
          }
 

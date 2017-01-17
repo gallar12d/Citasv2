@@ -69,11 +69,14 @@ $ndias= sort($dias, SORT_NUMERIC );
 $countdays = count($dias);
 
 $name = strip_tags($_POST['nombre']);
+$tipoatencion = strip_tags($_POST['tipoAtencion']);
 
 
 // Acomodar Dias
 echo'
-<h1 class="horario-name"><i class="fa fa-calendar" aria-hidden="true"></i> '.$name.'</h1>
+<h2 class="horario-name"><i class="fa fa-calendar" aria-hidden="true"></i> '.$name.'</h2>
+<h3 id="tipoatencion"> '.$tipoatencion.'</h3>
+
 <table id="thetable" class="table table-bordered">
 <thead class="thead">
 <th class="horarioheader"><i class="fa fa-clock-o"></i> Horario</th>
@@ -217,11 +220,13 @@ public function insertaragenda(Request $request)
 $fecha = date('Y-m-d');
 $data = $_POST['horario'];
 $nombre = $_POST['nombre'];
+$tipoatencion = $_POST['tipoatencion'];
 $descripcion = $_POST['descripcion'];
 
 Horario::create([
   'nombre' => $nombre,
   'descripcion' => $descripcion,
+   'tipoatencion' => $tipoatencion,
   'horario' => $data,
   'fecha' => $fecha
   ]);

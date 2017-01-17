@@ -45,7 +45,7 @@
   <select id="nombre" name="nombre" data-style="btn-primary" class="form-control">
    <option selected value="">Seleccione...</option>
     @foreach($medicos as $medic)
-     <option id="{{ $medic->id }}" value="{{ $medic->id }}">{{ $medic->Nombres }} {{ $medic->Apellidos }}</option>
+     <option id="{{ $medic->id }}" value="{{ $medic->Nombres }} {{ $medic->Apellidos }}">{{ $medic->Nombres }} {{ $medic->Apellidos }}</option>
     @endforeach
   </select>
 
@@ -57,7 +57,7 @@
 </select>
 <br>
 <label>Tipo de Atención:</label>
-<select id="tipoAtencion" name="atencion" data-style="btn-primary" class="form-control">
+<select id="tipoAtencion" name="tipoAtencion" data-style="btn-primary" class="form-control">
     <option>Materno</option>  
     <option>General</option> 
     <option>Urgencias</option>   
