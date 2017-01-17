@@ -54,6 +54,8 @@ $('#days-list a').on('click', function(){
          dataset.val(addday+dias+',');
       dataset.click();
      }
+
+     console.log();
 });
 
 
@@ -224,7 +226,7 @@ if (dado == true){
                     });
 
                 });
-         //----------------------------------------------------------------------------
+         
          },
          error: function(){
             novalid();

@@ -4,6 +4,34 @@ require_once 'config.php';
 // conexion de la base de datos
 $conexion = Conexion::singleton_conexion();
 
+//guardar la info de la reserva de cita por cliente
+if(isset($_POST['data']))
+
+{
+
+  $json = $_POST['data'];
+ 
+  $datosclientes = json_decode($json);
+  
+  foreach ($datosclientes as $cliente)
+   {
+
+   
+        var_dump($cliente->nombre);
+    // mysqli_query($conexion,"INSERT INTO infocitas (tipoid,numid,nombres,apellidos,direccion,telefono) 
+    // VALUES ('".$cliente['tipoid']."',".$cliente['numeroid'].",'".$cliente['nombre']."','".$cliente['apellido']."','".$cliente['direccion']."',".$cliente['telefono'].")"); 
+        
+    }
+
+
+
+
+}
+
+
+
+
+
 
 if (isset($_POST['process'])) {
 #---------------------------------------------------------------------------------------------------
@@ -252,6 +280,43 @@ $SQL = 'DELETE FROM horarios WHERE id = :id';
 $sentence = $conexion -> prepare($SQL);
 $sentence -> bindParam(':id',$_POST['dataid'], PDO::PARAM_INT);
 $sentence -> execute();
+
+
+}
+elseif ($process == 6){
+
+
+    if(empty($_POST['tipoid']) || empty($_POST['numeroid']) || empty($_POST['nombres'])){
+      exit();
+    }
+    else{
+        $fecha = date('Y-m-d');
+        $tipoid = $_POST['tipoid'];
+        $numeroid = $_POST['numeroid'];
+        $nombres = $_POST['nombres'];
+        $apellidos = $_POST['apellidos'];
+        $direccion = $_POST['direccion'];
+        $telefono = $_POST['telefono'];
+        $descripcion = $_POST['descripcion'];
+
+        $SQL = 'INSERT INTO infocitas (tipoid, numid, nombres, apellidos, direccion, telefono, fecha_hizo_reserva) VALUES (:tipoid, :numid, :nombres, :apellidos, :direccion, :telefono, :fecha);';
+        $sentence = $conexion -> prepare($SQL);
+        $sentence -> bindParam(':tipoid',$tipoid,PDO::PARAM_STR);
+        $sentence -> bindParam(':numid',$numeroid,PDO::PARAM_STR);
+        $sentence -> bindParam(':nombres',$nombres,PDO::PARAM_STR);
+        $sentence -> bindParam(':apellidos',$apellidos,PDO::PARAM_STR);
+        $sentence -> bindParam(':direccion',$direccion,PDO::PARAM_STR);
+        $sentence -> bindParam(':telefono',$telefono,PDO::PARAM_STR);
+        $sentence -> bindParam(':fecha',$fecha,PDO::PARAM_STR);
+        $sentence -> execute();
+
+
+
+
+    }
+   
+
+  
 
 
 }

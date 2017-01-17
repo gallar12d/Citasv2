@@ -81,4 +81,12 @@ return redirect()->route('admin.users.index');
 
 }
 
+public function iflogin(){
+
+    $respuesta = Auth::guest();
+    return $respuesta;
+    echo $respuesta;
+}
+
+
 }

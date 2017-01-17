@@ -45,15 +45,22 @@
   <select id="nombre" name="nombre" data-style="btn-primary" class="form-control">
    <option selected value="">Seleccione...</option>
     @foreach($medicos as $medic)
-     <option id="{{ $medic->id }}" value="{{ $medic->id }}">{{ $medic->Nombres }}</option>
+     <option id="{{ $medic->id }}" value="{{ $medic->id }}">{{ $medic->Nombres }} {{ $medic->Apellidos }}</option>
     @endforeach
   </select>
 
 <div class="clearfix"></div>
 <br>
 <label>Jornada Atención:</label>
-<select id="descripcion" name="descripcion" data-style="btn-primary" class="form-control">
+<select id="jornada" name="descripcion" data-style="btn-primary" class="form-control">
     <option>Única</option>    
+</select>
+<br>
+<label>Tipo de Atención:</label>
+<select id="tipoAtencion" name="atencion" data-style="btn-primary" class="form-control">
+    <option>Materno</option>  
+    <option>General</option> 
+    <option>Urgencias</option>   
 </select>
 
 <div class="clearfix"></div>
@@ -81,8 +88,8 @@
   <label>Dividir Entre:</label>
   <select class="form-control" name="minutos">
                 <option></option>
-                <option value="35">35 Minutos</option>
-                <option value="45">45 minutos</option>
+                <option value="20">20 Minutos</option>
+                <option value="40">40 minutos</option>
                 <option value="60">1 Hora</option>
             </select>
          </form>

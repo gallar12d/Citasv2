@@ -8,7 +8,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/home', 'HomeController@index');
 Route::get('/', function () {
     return view('index');
-});
+})->middleware('auth');
 
 //empresa Resources
 /********************* empresa ***********************************************/
@@ -70,7 +70,26 @@ Route::post('/api/v13/agendamiento/creacionagenda',
 'AgendadoctorController@creacionagenda');
 Route::post('/api/v13/agendamiento/insertaragenda',
 'AgendadoctorController@insertaragenda');
-Route::resource('lista','AgendadoctorController@lista');
+Route::get('/lista','AgendadoctorController@lista');
+Route::get('/salir', function(){
+
+    Auth::logout();
+    return view('welcome');
+});
+
+Route::get('/api/usuario/obtenerlogin', function () {
+
+    if (Auth::check()) {
+    return 1;
+}
+else
+{
+    return 0;
+}
+
+
+
+});
 
 
 Route::post('/api/medico/obtenermunic',

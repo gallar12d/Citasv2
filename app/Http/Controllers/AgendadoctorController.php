@@ -14,6 +14,10 @@ use DateInterval;
 
 class AgendadoctorController extends Controller
 {
+     public function __construct()
+    {
+       $this->middleware('auth',  ['except' => ['lista']]);
+    }
 
 
 public function index(){
@@ -58,6 +62,8 @@ if ($process == 1) {
 
 // Dias
 $dias = explode(',', $_POST['days']);
+$ndias= sort($dias, SORT_NUMERIC ); 
+
 
 // Contar dias
 $countdays = count($dias);

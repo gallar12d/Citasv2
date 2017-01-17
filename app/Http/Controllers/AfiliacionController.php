@@ -12,6 +12,11 @@ use Amranidev\Ajaxis\Ajaxis;
 class AfiliacionController extends Controller
 {
 
+     public function __construct()
+    {
+       $this->middleware('auth');
+    }
+
     public function index(){
 
         $afiliaciones = Afiliacion::all();

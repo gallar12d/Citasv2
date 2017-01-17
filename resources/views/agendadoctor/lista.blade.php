@@ -9,7 +9,7 @@ require_once'horario/include/functions.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Horarios | JHCodes</title>
+    <title>Horarios | Médico</title>
 
     <!-- Bootstrap -->
     <link href='https://fonts.googleapis.com/css?family=Maven+Pro' rel='stylesheet' type='text/css'>
@@ -54,13 +54,7 @@ require_once'horario/include/functions.php';
          <div class="panel panel-info" style="margin-top: 20px;">
            <div class="panel-heading"><i class="fa fa-calendar" aria-hidden="true"></i> Listas de Horarios </div>
            <div class="panel-body nopadding">
-           <?php
-                    if (isset($_GET['page'])){
-                      horariostable($_GET['page'], 1);
-                    }else{
-                      horariostable(1, 1);
-                    }
-                ?>
+       
             
            </div>
          </div>
@@ -83,8 +77,30 @@ require_once'horario/include/functions.php';
       <div class="modal-body">
 
         <form id="taskfrm">
-           <label>Tarea</label>
-           <input class="form-control" type="text" id="nametask" >
+            <label>Tipo de Identificación</label>
+        <select class="form-control" id="tipoid">
+              <option value="cedula">Cédula</option>
+              <option value="ti">Tarjeta de Identidad</option>
+              
+           </select>
+            <label>EPS a la que pertenece</label>
+        <select class="form-control" id="tipoid">
+              <option value="cedula">Asmet Salud</option>
+              <option value="ti">Confamiliar</option>
+              <option value="ti">Pronisalud</option>
+              <option value="ti">Otra </option>
+              
+           </select>
+           <label>Número de identificación</label>
+           <input class="form-control" type="text" id="numeroId" >
+            <label>Nombres</label>
+           <input class="form-control" type="text" id="nombres" >
+            <label>Apellidos</label>
+           <input class="form-control" type="text" id="apellidos" >
+            <label>Dirección</label>
+           <input class="form-control" type="text" id="direccion" >
+            <label>Teléfono</label>
+           <input class="form-control" type="text" id="telefono" >
            <label>Color:</label>
            <select class="form-control" id="idcolortask">
               <option value="purple-label">Purpura</option>
@@ -93,7 +109,7 @@ require_once'horario/include/functions.php';
               <option value="pink-label">Rosa</option>
               <option value="green-label">Verde</option>
            </select>
-          <input id="tede" type="hidden" name="tede" >
+          <input id="tede" type="" name="tede" >
         </form>
 
       </div>
