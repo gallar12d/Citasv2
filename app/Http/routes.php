@@ -1,13 +1,13 @@
 <?php
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
     Route::get('/home', 'HomeController@index');
 Route::get('/', function () {
-    return view('index');
+    return view('home');
 })->middleware('auth');
 
 //empresa Resources
@@ -74,7 +74,7 @@ Route::get('/lista','AgendadoctorController@lista');
 Route::get('/salir', function(){
 
     Auth::logout();
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('/api/usuario/obtenerlogin', function () {

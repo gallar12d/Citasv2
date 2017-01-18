@@ -74,7 +74,7 @@
 <div class="form-group">
  <label class="col-md-3 control-label">Fecha de Nacimiento</label>
   <div class="col-md-5">
-   <input class="datepicker" data-date-format="dd/mm/yyyy" name="Fecha_nac"  required>
+   <input class="datepicker" date-format="dd/mm/yyyy" name="Fecha_nac"  required>
   </div>
 </div>
 

@@ -2,6 +2,32 @@ $(document).ready(function() {
    // todas las funciones despues de que el documento esté listo
    //$( "#listaHorarios .panel-body" ).append( " <?php if (isset($_GET['page'])){ horariostable($_GET['page'], 1);} else{ horariostable(1, 1); } ?>" );
    // $('#contenthere').load('phpfilehere.php');
+// alert("entra")
+function testlogin() {
+  return $.ajax({
+       url: '/api/usuario/obtenerlogin',
+                   type: 'GET',
+  });
+}
+ var promise = testlogin();
+                       var islogin = promise.success(function (data) {
+                         // alert(data)
+                         
+                         if(data == 0){
+                          $('#agendar').hide()
+                         
+                            
+                          //si el user es visitante entoces se oculta la x de la tarea que elimina la tarea 
+                        
+
+                       }
+                       else{
+                        $('#agendar').show()
+                        
+
+                       }
+                        });
+
 
 function borrardelete(data){
 
@@ -10,13 +36,16 @@ function borrardelete(data){
    $(".delhorario").hide()
 };
 
-   $('#nombre').on('change', function() {
+   $('#tipoatencion').on('change', function() {
      // alert(this.value); // or $(this).val()
       //hacemos el llamado al ajax al servidor php con valor del value
       // alert('asdf'+this.value+'dfas');
-         $.ajax({
+     
+
+          $.ajax({
             data: {
-               "idmedico": this.value,
+               // "idmedico": $( "#nombre option:selected" ).text(),
+               "tipoatencion": this.value
             },
             url: 'horario/include/functions.php',
             type: 'post',
@@ -59,6 +88,11 @@ function borrardelete(data){
               
             }
          });
+
+
+      
+
+         
       
    });
 });

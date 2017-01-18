@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Bootstrap Login Form Template</title>
+        <title>Login E.S.E</title>
 
         <!-- CSS -->
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
@@ -39,8 +39,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-8 col-sm-offset-2 text">
-                        <h1> <strong>CreazionSoftware</strong>
-                            Login Form
+                        <h1> <strong>Inicio de Sesión Módulo de Citas Médicas
                         </h1>
 
                     </div>
@@ -49,7 +48,7 @@
                     <div class="col-sm-6 col-sm-offset-3 form-box">
                         <div class="form-top">
                             <div class="form-top-left">
-                                <h3>Logueate</h3>
+                                <h3>Para iniciar la Sesión</h3>
                                 <p>Introduzca su correo electronico y contraseña para iniciar sesión:</p>
                             </div>
                             <div class="form-top-right"> <i class="fa fa-lock"></i>

@@ -1,10 +1,55 @@
 // funcion no valid
+function testlogin() {
+  return $.ajax({
+       url: '/api/usuario/obtenerlogin',
+                   type: 'GET',
+  });
+}
+
+
+
+
+
+// function verauth(){
+//     var islog;
+
+//   islog = $.ajax({
+//                    url: '/api/usuario/obtenerlogin',
+//                    type: 'GET',
+//                    // dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
+//                    // data: {param1: 'value1'},
+//                 })
+//                 .done(function(data) {
+
+//                   // console.log(data);
+//                   return  data;
+                  
+//                    // if (data === 'true'){
+//                      // $(".delhorario").hide();
+//                       // console.log(data);
+//                    // }
+                    
+//                 })
+//                 .fail(function() {
+//                    console.log("error");
+//                 })
+//                 .always(function() {
+//                    console.log("complete");
+//                 });
+//                 return islog;
+//                 alert(islog);
+
+
+// };
+
 function novalid() {
         $('#alert-error').addClass('animated bounce').fadeIn(500);
         setTimeout(function() {
                 $('#alert-error').removeClass('animated bounce').fadeOut(500);
         }, 1500);
 }
+
+
  function cargascript(){
  	 $.getScript("horario/js/scripts-custom.js").done(function(script, textStatus) {
                   console.log( 'se cargo script desde la funcion' );
@@ -38,6 +83,30 @@ $('.verhorario').on('click', function() {
                         numeroid = "";
 
                         //----------------------------------------------------------------------------------------------
+                        //funcion ver si es user loging
+                        var promise = testlogin();
+                       var islogin = promise.success(function (data) {
+                        // alert(data)
+                         if(data == 0){
+                          $('.changethetime ').hide()
+                          $('.deltasker').hide();
+                            
+                          //si el user es visitante entoces se oculta la x de la tarea que elimina la tarea 
+                        
+
+                       }
+                       else{
+                         $('.changethetime ').show()
+                          $('.deltasker').show();
+                        
+
+                       }
+                        });
+
+                       
+
+
+                      
                         // Mostrar Boton Add
                         $(".td-line").hover(
                                 function() {
@@ -49,8 +118,7 @@ $('.verhorario').on('click', function() {
                                         $(this).find('button').hide();
                                 }
                         );
-                        //si el user es visitante entoces se oculta la x de la tarea que elimina la tarea 
-                        $('.deltasker').hide();
+                        
                         // Agregar Informacion
                         $('.addinfo').on('click', function() {
                                 var dum = $(this).attr('data-row');
@@ -77,15 +145,15 @@ $('.verhorario').on('click', function() {
                                 var tasker = $('#numeroId').val();
                                 var color = $('#idcolortask option:selected').val();
                                 //datos del usuario que reserva en cada cita para guardan en la base de datos 
-                                info = {
-                                        'tipoid': $('#tipoid option:selected').val(),
-                                        'numeroid': $('#numeroId').val(),
-                                        'nombre': $('#nombres').val(),
-                                        'apellido': $('#apellidos').val(),
-                                        'direccion': $('#direccion').val(),
-                                        'telefono': $('#telefono').val()
-                                };
-                                info = JSON.stringify(info);
+                                // info = {
+                                //         'tipoid': $('#tipoid option:selected').val(),
+                                //         'numeroid': $('#numeroId').val(),
+                                //         'nombre': $('#nombres').val(),
+                                //         'apellido': $('#apellidos').val(),
+                                //         'direccion': $('#direccion').val(),
+                                //         'telefono': $('#telefono').val()
+                                // };
+                                // info = JSON.stringify(info);
                                 tipoid = $('#tipoid option:selected').val();
 
                                 numeroid = $('#numeroId').val();
@@ -94,7 +162,8 @@ $('.verhorario').on('click', function() {
                                 direccion = $('#direccion').val();
                                 telefono = $('#telefono').val();
                                 $('#DataEdit').modal('toggle');
-                                $('#' + tede).append('<label class="label-desc ' + color + '">' + tasker + ' <a class="deltasker"><i class="fa fa-times"></i></a></label>');
+                                $.when( $('#' + tede).append('<label class="label-desc ' + color + '">' + 'Reservado por: '  + tasker + ' <a class="deltasker"><i class="fa fa-times"></i></a></label>')).then($('.addinfo').unbind( "click" ) );
+                               
                                 //$('#'+tede).text(tasker).addClass(color).show();
                                 $('#taskfrm')[0].reset();
                                 $('.deltasker').on('click', function() {
@@ -104,7 +173,7 @@ $('.verhorario').on('click', function() {
                                                 element.remove();
                                         }, 1000);
                                 });
-                                cargascript();
+                                // cargascript();
                         });
                         $('.deltasker').on('click', function() {
                                 var element = $(this).parent();
@@ -143,11 +212,9 @@ $('.verhorario').on('click', function() {
                                 $('.timeblock').show();
                         });
                         $('.guardarhorario').on('click', function() {
-                                if (numeroid ){
-                                        alert('No se ha seleccionado ninguna fecha para guardar')
-                                }
+                              
 
-                                 else {
+                                
 
                                 var btnsave = $(this);
                                 var descripcion = $('#descripcioninput').val();
@@ -163,7 +230,9 @@ $('.verhorario').on('click', function() {
                                 //alert(tipoid + numeroid);
                                 var horariodata2 = 'process=6&tipoid=' + tipoid + '&numeroid=' + numeroid + '&nombres=' + nombres + '&apellidos=' + apellidos + '&direccion=' + direccion + '&telefono=' + telefono;
                                 var horariodata = 'process=4&nombre=' + nombre + '&descripcion=' + descripcion + '&horario=' + horario + '&id=' + iddata;
-                                console.log(info);
+                                // console.log(
+
+                            
                                 $.ajax({
                                         type: 'POST',
                                         url: 'horario/include/process.php',
@@ -180,6 +249,7 @@ $('.verhorario').on('click', function() {
                                                 setTimeout(function() {
                                                         $('#ViewHorario').modal('toggle');
                                                 }, 1000);
+                                                window.location.href = '/lista';
                                         },
                                         error: function() {
                                                 novalid();
@@ -199,7 +269,7 @@ $('.verhorario').on('click', function() {
 
 
 
-                                };
+                                ;
                               
 
 

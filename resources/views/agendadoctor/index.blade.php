@@ -4,22 +4,22 @@
 
 <link href="{{ asset('horario/style.css') }}" rel="stylesheet">
 
- <div class = 'container'>
+ <div class = 'container'  style="width: 100%;">
    <div class="clearfix"></div>
     <br>
 
     <!-- menu -->
-    <div id="menu" class="col-md-12 text-right">
-      <div class="container">
-          <a class="btn btn-primary" href="agendamiento/lista"><i class="fa fa-calendar" aria-hidden="true"></i> Agendamientos</a>
-          <button class="btn btn-warning" data-toggle="modal" data-target="#myModal"><i class="fa fa-calendar-check-o"></i> Agendamiento por Medico</button>
+    <div id="menu" class="col-md-12 ">
+      <div class="container" >
+          <a class="btn btn-primary" href="/lista"><i class="fa fa-calendar" aria-hidden="true"></i>Agendar una Cita</a>
+          <button class="btn btn-warning" data-toggle="modal" data-target="#myModal"><i class="fa fa-calendar-check-o"></i> Crear un horario de citas</button>
       </div>
     </div>
     <!-- menu -->
 
 
     <!-- container -->
-      <div class="container">
+      <div class="container " style="width: 100%;">
        <div id="clockindex" class="col-sm-12 text-center">
          <i class="fa fa-calendar-plus-o icon-clock-index animated infinite pulse" aria-hidden="true"></i>
        </div>
@@ -67,7 +67,7 @@
 <br>
      <label>Seleccione Dias en que Realiza Consulta:</label>
        <div id='fechaSemana'>
-          <h1></h1>
+          <h2 style=" text-align: center"></h2>
        </div>
         <div id="days-list" class="col-sm-12">
                <a data-day="1" class="day-option">Lunes</a>
@@ -106,7 +106,7 @@
 
 
 <!-- append modal set data -->
-<div class="modal fade" id="DataEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!-- <div class="modal fade" id="DataEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -136,7 +136,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 <!-- append modal set data -->
 
 

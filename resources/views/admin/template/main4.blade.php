@@ -243,12 +243,12 @@
                 <button type="button" data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-toggle"><span
                         class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span
                         class="icon-bar"></span><span class="icon-bar"></span></button>
-                <a id="logo" href="index.html" class="navbar-brand"><span class="fa fa-rocket"></span><span
+                <a id="logo" href="/" class="navbar-brand"><span class="fa fa-rocket"></span><span
                         class="logo-text">µAdmin</span><span style="display: none" class="logo-text-icon">µ</span></a>
             </div>
             <div class="topbar-main"><a id="menu-toggle" href="#" class="hidden-xs"><i class="fa fa-bars"></i></a>
                 <ul class="nav navbar-nav    ">
-                    <li class="active"><a href="index.html">Dashbssoard</a></li>
+                    <li class="active"><a href="/">Dashbssoard</a></li>
                     <li><a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle">Layouts
                         &nbsp;<i class="fa fa-angle-down"></i></a>
                         <ul class="dropdown-menu">
@@ -418,7 +418,7 @@
                             class="fa fa-search"></i></a></span></div>
                 </form>
                 <ul class="nav navbar navbar-top-links navbar-right mbn">
-                    <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i
+                   <!--  <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i
                             class="fa fa-bell fa-fw"></i><span class="badge badge-green">3</span></a>
                         <ul class="dropdown-menu dropdown-alerts">
                             <li><p>You have 14 new notifications</p></li>
@@ -453,8 +453,8 @@
                             </li>
                             <li class="last"><a href="extra-user-list.html" class="text-right">See all alerts</a></li>
                         </ul>
-                    </li>
-                    <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i
+                    </li> -->
+                  <!--   <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i
                             class="fa fa-envelope fa-fw"></i><span class="badge badge-orange">7</span></a>
                         <ul class="dropdown-menu dropdown-messages">
                             <li><p>You have 14 new messages</p></li>
@@ -493,8 +493,8 @@
                             </li>
                             <li class="last"><a href="email-view-mail.html" target="_blank">Read all messages</a></li>
                         </ul>
-                    </li>
-                    <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i
+                    </li> -->
+                    <!-- <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i
                             class="fa fa-tasks fa-fw"></i><span class="badge badge-yellow">8</span></a>
                         <ul class="dropdown-menu dropdown-tasks">
                             <li><p>You have 14 pending tasks</p></li>
@@ -550,21 +550,21 @@
                             </li>
                             <li class="last"><a href="page-blog-item.html" target="_blank">See all tasks</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                     <li class="dropdown topbar-user"><a data-hover="dropdown" href="#" class="dropdown-toggle"><img
-                            src="https://s3.amazonaws.com/uifaces/faces/twitter/kolage/48.jpg" alt=""
-                            class="img-responsive img-circle"/>&nbsp;<span class="hidden-xs">John Doe</span>&nbsp;<span
+                            src="{{ asset('images/hospital.png') }}" alt=""
+                            class="img-responsive img-circle"/>&nbsp;<span class="hidden-xs">E.S.E Albán Nariño</span>&nbsp;<span
                             class="caret"></span></a>
                         <ul class="dropdown-menu dropdown-user pull-right">
-                            <li><a href="extra-profile.html"><i class="fa fa-user"></i>My Profile</a></li>
-                            <li><a href="page-calendar.html"><i class="fa fa-calendar"></i>My Calendar</a></li>
-                            <li><a href="email-inbox.html"><i class="fa fa-envelope"></i>My Inbox<span
+                            <li><a href="/medico"><i class="fa fa-user"></i>Médicos</a></li>
+                            <li><a href="/agendamiento"><i class="fa fa-calendar"></i>Citas</a></li>
+                            <li><a href="/especialidades"><i class="fa fa-envelope"></i>Especialidades<span
                                     class="badge badge-danger">3</span></a></li>
-                            <li><a href="#"><i class="fa fa-tasks"></i>My Tasks<span
+                            <li><a href="/afiliaciones"><i class="fa fa-tasks"></i>Afiliaciones<span
                                     class="badge badge-success">7</span></a></li>
                             <li class="divider"></li>
-                            <li><a href="extra-lock-screen.html"><i class="fa fa-lock"></i>Lock Screen</a></li>
-                            <li><a href="extra-signin.html"><i class="fa fa-key"></i>Log Out</a></li>
+                            <!-- <li><a href="extra-lock-screen.html"><i class="fa fa-lock"></i>Lock Screen</a></li> -->
+                            <li><a href="/salir"><i class="fa fa-key"></i>Log Out</a></li>
                         </ul>
                     </li>
 
@@ -668,9 +668,9 @@
             <div class="sidebar-collapse menu-scroll">
                 <ul id="side-menu" class="nav">
                     <li class="user-panel">
-                        <div class="thumb"><img src="https://s3.amazonaws.com/uifaces/faces/twitter/kolage/128.jpg"
+                        <div class="thumb"><img src="{{ asset('images/hospital.png') }}"
                                                 alt="" class="img-circle"/></div>
-                        <div class="info"><p>John Doe</p>
+                        <div class="info"><p>E.S.E Albán Nariño</p>
                             <ul class="list-inline list-unstyled">
                                 <li><a href="extra-profile.html" data-hover="tooltip" title="Profile"><i
                                         class="fa fa-user"></i></a></li>
@@ -685,7 +685,7 @@
                         <div class="clearfix"></div>
                     </li>
 
-					@include('admin.template.menu')
+					<!-- @include('admin.template.menu') -->
 
 
                                        <!--li.charts-sum<div id="ajax-loaded-data-sidebar"></div>--></ul>
@@ -695,7 +695,7 @@
         <!--END CHAT FORM--><!--BEGIN PAGE WRAPPER-->
         <div id="page-wrapper"><!--BEGIN TITLE & BREADCRUMB PAGE-->
 
-   <div class="page-title-breadcrumb option-demo">
+  <!--  <div class="page-title-breadcrumb option-demo">
      <div class="page-header pull-left">
       <div class="page-title mrm">
          <section>
@@ -709,11 +709,11 @@
                 </div>
                 <div class="clearfix"></div>
 
-            </div>
+            </div> -->
             <!--END TITLE & BREADCRUMB PAGE--><!--BEGIN CONTENT-->
                 <div id="page-content">
                     <div class="row">
-                       <div class="col-sm-6 col-lg-3">
+                       <div class="col-sm-12 col-lg-12">
                           <section>
                             @include('flash::message')
                             @yield('content')

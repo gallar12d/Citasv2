@@ -14,6 +14,7 @@ require_once'horario/include/functions.php';
     <!-- Bootstrap -->
     <link href='https://fonts.googleapis.com/css?family=Maven+Pro' rel='stylesheet' type='text/css'>
     <link href="{{ asset('horario/style.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -21,20 +22,48 @@ require_once'horario/include/functions.php';
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+      <style>
+      body {
+        font-family: 'Roboto', sans-serif;
+        font-size: 3.6vmin;
+      }
+       .roboto {
+        font-family: 'Roboto', sans-serif;
+        font-size: 3.2vw;
+        
+    
+      }
+      h4.roboto{
+
+        top: 33%;
+    position: absolute;
+        right: 45%;
+    left: 9%;
+
+      }
+       h3.roboto{
+
+        top: 7%;
+    right: 38%;
+    position: absolute;
+
+      }
+    </style>
   </head>
   <body>
    <!-- container -->
-   <div class="comtainer">
+   <div id="title" class="comtainer">
      <div class="row">
-       <div class="col-md-8 col-md-offset-2"">
-         <h1 class="text-center">Bienvenido al Módulo de Citas Online del Hospital San josé</h1>
-         <h2 class="text-center">Por favor seleccione su médico de preferencia para consultar la disponibilidad de citas para esta semana</h2>
+       <div class="col-md-12 "">
+       <img  class="img-responsive" src=" https://dpcintegration.files.wordpress.com/2015/10/adobestock_66020892.jpeg">
+         <h3 class=" roboto text-center">Bienvenido al Módulo de Citas Online del Hospital San josé</h3>
+         <h4 class=" roboto text-center">Por favor seleccione el Tipo de cita que desea reservar para consultar la disponibilidad de esta semana</h4>
        </div>
      </div
 
    </div>
 <div class="container">
-  <div class="col-lg-6 col-offset-6 centered">
+  <!-- <div class="col-lg-6 col-offset-6 centered">
      <div>
 
    <label>Medico:</label>
@@ -43,6 +72,20 @@ require_once'horario/include/functions.php';
     @foreach($medicos as $medic)
      <option id="{{ $medic->id }}" value="{{ $medic->Nombres }} {{ $medic->Apellidos }}">{{ $medic->Nombres }} {{ $medic->Apellidos }} </option>
     @endforeach
+  </select>
+     
+
+   </div>
+  </div> -->
+    <div class="col-lg-6 col-offset-6 centered">
+     <div>
+
+   <label>Tipo De Atención:</label>
+  <select id="tipoatencion" name="tipoatencion" data-style="btn-primary" class="form-control">
+   <option selected value="">Seleccione...</option>
+   <option>Materno</option>  
+    <option>General</option> 
+    <option>Urgencias</option> 
   </select>
      
 
@@ -72,7 +115,7 @@ require_once'horario/include/functions.php';
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close canceltask" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
-        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-thumb-tack"></i> Agregar Tarea</h4>
+        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-thumb-tack"></i> Agregar Información de la Reserva</h4>
       </div>
       <div class="modal-body">
 
@@ -85,10 +128,9 @@ require_once'horario/include/functions.php';
            </select>
             <label>EPS a la que pertenece</label>
         <select class="form-control" id="tipoid">
-              <option value="cedula">Asmet Salud</option>
-              <option value="ti">Confamiliar</option>
-              <option value="ti">Pronisalud</option>
-              <option value="ti">Otra </option>
+              @foreach($afiliaciones as $afiliacion)
+     <option id="{{ $afiliacion->codigo_empresa }}" value="{{ $afiliacion->nombre }} ">{{ $afiliacion->nombre}} </option>
+    @endforeach
               
            </select>
            <label>Número de identificación</label>
@@ -124,7 +166,12 @@ require_once'horario/include/functions.php';
 
     <!-- alert danger -->
     <div id="alert-error"><i class="fa fa-times fa-2x"></i></div>
+
+
     <!-- alert danger -->
+    <div class="footer">
+      <a id="agendar" href="/agendamiento">   Agendar    </a>    
+    </div>  
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

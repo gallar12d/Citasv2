@@ -11,17 +11,27 @@ $(document).ready(function() {
   $(window).load(function() {
 //=============================================================================
 var curr = new Date; // get current date
-var first = curr.getDate() - curr.getDay(); // First day is the day of the month - the day of the week
+var first = curr.getDate() - curr.getDay() + 1; // First day is the day of the month - the day of the week
 var last = first + 6; // last day is the first day + 6
 
 var firstday = new Date(curr.setDate(first)).toDateString();
 var lastday = new Date(curr.setDate(last)).toDateString();
 //
-console.log(firstday);
+// console.log(firstday);
 var semana = (firstday + lastday);
 
-$('#fechaSemana h1').html("Semana del "+firstday+" al "+lastday+"");
-  $('#fechaSemana h1').text("Semana del "+firstday+" al "+lastday+"");
+var meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+var f=new Date();
+// alert(firstday);
+// alert(f.getDate());
+// alert(f.getDate() + " de " + meses[f.getMonth()] + " de " + f.getFullYear());
+// alert(first + " de " + meses[f.getMonth()] + " de " + f.getFullYear());
+// alert(last + " de " + meses[f.getMonth()] + " de " + f.getFullYear());
+var pdia = first + " de " + meses[f.getMonth()] + " de " + f.getFullYear();
+var udia = last + " de " + meses[f.getMonth()] + " de " + f.getFullYear();
+
+$('#fechaSemana h2').text('Semana del ' + pdia + ' al ' +udia);
+  // $('#fechaSemana h1').text("Semana del "+firstday+" al "+lastday+"");
 
 
 $('#time1').datetimepicker({
@@ -94,8 +104,12 @@ horariofrm.validate({
 var dado = horariofrm.valid();
 if (dado == true){
 
+        // semana = $('#fechaSemana').text();
+
+
       var getdatos = horariofrm.serialize();
-      var sender = 'process=1&'+getdatos;
+      var sender = 'process=1&pd='+first+'&ud='+last+'&'+getdatos;
+      // alert(sender)
 
 
       $.ajax({
@@ -199,7 +213,9 @@ if (dado == true){
                     var tipoatencion = $('#tipoatencion').text();
                     var nombre = $('#nombreinput').val();
                     var horario = $('#mynew').html();
-                    var horariodata = 'process=2&nombre='+nombre+'&descripcion='+descripcion+'&tipoatencion='+tipoatencion+'&horario='+horario;
+                    var pd = $('#pd').val();
+                    var ud = $('#ud').val();
+                    var horariodata = 'process=2&nombre='+nombre+'&descripcion='+descripcion+'&pd='+pd+'&ud='+ud+'&tipoatencion='+tipoatencion+'&horario='+horario;
 
                     $.ajax({
 

@@ -13,15 +13,15 @@ if(isset($_POST['data']))
  
   $datosclientes = json_decode($json);
   
-  foreach ($datosclientes as $cliente)
-   {
+  // foreach ($datosclientes as $cliente)
+  //  {
 
    
-        var_dump($cliente->nombre);
-    // mysqli_query($conexion,"INSERT INTO infocitas (tipoid,numid,nombres,apellidos,direccion,telefono) 
-    // VALUES ('".$cliente['tipoid']."',".$cliente['numeroid'].",'".$cliente['nombre']."','".$cliente['apellido']."','".$cliente['direccion']."',".$cliente['telefono'].")"); 
+  //       var_dump($cliente->nombre);
+  //   // mysqli_query($conexion,"INSERT INTO infocitas (tipoid,numid,nombres,apellidos,direccion,telefono) 
+  //   // VALUES ('".$cliente['tipoid']."',".$cliente['numeroid'].",'".$cliente['nombre']."','".$cliente['apellido']."','".$cliente['direccion']."',".$cliente['telefono'].")"); 
         
-    }
+  //   }
 
 
 
@@ -179,6 +179,7 @@ echo '</tbody></table>
 <input type="hidden" id="nombreinput" value="'.$_POST['nombre'].'">
 
 <button class="guardarhorario btn btn-lg btn-warning pull-right"><i class="fa fa-floppy-o"></i> Guardar</button>
+<button type="button" class="canceltask btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
 
 ';
 
@@ -221,7 +222,7 @@ if (empty($resultados)){
 }else{
    foreach ($resultados as $key){
    echo'
-<div class="modal fade" id="ViewHorario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="ViewHorario"  data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div id="modalblue" class="modal-body">

@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Agendadoctor;
 use App\Agendamiento;
+use App\Afiliacion;
 use App\Medico;
 use App\Horario;
 use DateTime;
@@ -62,6 +63,12 @@ if ($process == 1) {
 
 // Dias
 $dias = explode(',', $_POST['days']);
+$pd =  strip_tags($_POST['pd']);
+$ud =  strip_tags($_POST['ud']);
+$estemes = date("m");
+$esteano = date("y");
+$semana = "Semana del ".$pd."/".$estemes."/".$esteano." al ".$ud."/".$estemes."/".$esteano;
+// echo $semana;
 $ndias= sort($dias, SORT_NUMERIC ); 
 
 
@@ -74,8 +81,11 @@ $tipoatencion = strip_tags($_POST['tipoAtencion']);
 
 // Acomodar Dias
 echo'
-<h2 class="horario-name"><i class="fa fa-calendar" aria-hidden="true"></i> '.$name.'</h2>
+<h3 class="horario-name"><i class="fa fa-calendar" aria-hidden="true"></i> '.$name.'</h3>
 <h3 id="tipoatencion"> '.$tipoatencion.'</h3>
+<h3 id="semana"> '.$semana.'</h3>
+<input style="display: none;" id="pd" name="pd" size="50" type="text" value="'.$pd.'">
+<input style="display: none;" id="ud" name="ud" size="50" type="text" value="'.$ud.'">
 
 <table id="thetable" class="table table-bordered">
 <thead class="thead">
@@ -135,7 +145,7 @@ for ($i=1; $i < $columnas; $i++) {
        <td class="td-line">
          <div id="'.$reverse.$i.'" class="col-sm-12 nopadding"></div>
          <div class="col-sm-12 text-center">
-            <button id="edit-'.$reverse.$i.'" data-row="'.$reverse.$i.'" class="addinfo btn btn-xs btn-primary"><i class="fa fa-plus"></i></button>
+            <button style ="display: none;" id="edit-'.$reverse.$i.'" data-row="'.$reverse.$i.'" class="  addinfo btn btn-xs btn-primary"><i class="fa fa-plus"></i></button>
          </div>
       </td>
   ';
@@ -176,7 +186,7 @@ for ($i=1; $i < $columnas; $i++) {
        <td class="td-line">
          <div  id="'.$reverse.$i.'" class="col-sm-12 nopadding"></div>
          <div class="col-sm-12 text-center">
-            <button id="edit-'.$reverse.$i.'" data-row="'.$reverse.$i.'" class="addinfo btn btn-xs btn-primary"><i class="fa fa-plus"></i></button>
+            <button style ="display: none;" id="edit-'.$reverse.$i.'" data-row="'.$reverse.$i.'" class="addinfo btn btn-xs btn-primary"><i class="fa fa-plus"></i></button>
          </div>
       </td>
   ';
@@ -194,6 +204,9 @@ echo '</tbody></table>
 <input type="hidden" id="nombreinput" value="'.$_POST['nombre'].'">
 
 <button class="guardarhorario btn btn-lg btn-warning pull-right"><i class="fa fa-floppy-o"></i> Guardar</button>
+<button type="button" class="canceltask btn btn-danger" data-dismiss="modal" data-backdrop="false"><i class="fa fa-times"></i> Cancelar</button>
+
+
 
 ';
 
@@ -222,13 +235,24 @@ $data = $_POST['horario'];
 $nombre = $_POST['nombre'];
 $tipoatencion = $_POST['tipoatencion'];
 $descripcion = $_POST['descripcion'];
+// $semana = $_POST['descripcion'];
+$pd = $_POST['pd'];
+$ud = $_POST['ud'];
+$estemes = date("m");
+$esteano = date("y");
+$semana = "Semana del ".$pd."/".$estemes."/".$esteano." al ".$ud."/".$estemes."/".$esteano;
+// echo $pd;
+// echo $pd;
 
 Horario::create([
   'nombre' => $nombre,
   'descripcion' => $descripcion,
    'tipoatencion' => $tipoatencion,
   'horario' => $data,
-  'fecha' => $fecha
+  'semana' => $semana,
+  'fecha' => $fecha,
+  'primerdia' => $pd,
+  'ultimodia' => $ud
   ]);
   return response()->json([
  "mensaje" => "creado"
@@ -258,8 +282,9 @@ foreach ($data2 as $key => $value) {
 public function lista()
 {
   $medicos = Medico::all();
+   $afiliaciones = Afiliacion::all();
     //$agenda = Agendadoctor::all();
-  return view('agendadoctor.lista', compact('medicos'));
+  return view('agendadoctor.lista', compact('medicos', 'afiliaciones'));
 }
 
 

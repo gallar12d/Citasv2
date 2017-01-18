@@ -1,21 +1,22 @@
 <?php
 include_once 'config.php';
 
-if(isset($_POST['idmedico']) && !empty($_POST['idmedico'])) {
-    $action = $_POST['idmedico'];
-    // echo($action);
+if(isset($_POST['tipoatencion']) && !empty($_POST['tipoatencion'])) {
+    // $action = $_POST['idmedico'];
+    $tipoatencion =$_POST['tipoatencion'];
+     // echo($tipoatencion);
 
-    horariostable(1, $action);
+    horariostable(1, $tipoatencion);
 
   
 }
 
 
-function horariostable($page, $idm){
+function horariostable($page,  $tipoatencion){
 
          // conexion de la base de datos
          $conexion = Conexion::singleton_conexion();
-         $idmedico = $idm;
+         // $idmedico = $idm;
 
          $RowCount = "SELECT * FROM horarios  ";
          $counsentence = $conexion -> prepare($RowCount);
@@ -30,11 +31,11 @@ function horariostable($page, $idm){
          $articuloInicial = ($page - 1) * $resultados;
 
          if ($page == 1) {
-            $SQL = "SELECT * FROM horarios where nombre = '$idmedico' LIMIT 10";
-            // echo $SQL;
+            $SQL = "SELECT * FROM horarios where  tipoatencion = ' $tipoatencion' LIMIT 10";
+             // echo $SQL;
             $paginaActual = 1;
          }else{
-            $SQL = "SELECT * FROM horarios where nombre = '$idmedico'  LIMIT ".$articuloInicial.", ".$resultados."";
+            $SQL = "SELECT * FROM horarios where tipoatencion = '$tipoatencion' LIMIT ".$articuloInicial.", ".$resultados."";
             $paginaActual = $page;
          }
 
@@ -52,8 +53,8 @@ function horariostable($page, $idm){
                       <thead class="messages-table-header">
                          <tr>
                            <th><i class="fa fa-angle-double-right"></i> Nombre del médico</th>
-                           <th><i class="fa fa-angle-double-right"></i> Descripción de la Jornada</th>
-                           <th><i class="fa fa-angle-double-right"></i> Fecha de Creación</th>
+                           <th><i class="fa fa-angle-double-right"></i> Jornada</th>
+                           <th><i class="fa fa-angle-double-right"></i> Semana</th>
                            <th><i class="fa fa-angle-double-right"></i> Acciones</th>
                          </tr>
                       </thead>
@@ -68,7 +69,7 @@ function horariostable($page, $idm){
               <tr id="trhorario'.$key['id'].'">
                 <td>'.$key['nombre'].'</td>
                 <td>'.$key['descripcion'].'</td>
-                <td>'.$fecha.'</td>
+                <td>'.$key['semana'].'</td>
                 <td>
                   <button data-id="'.$key['id'].'" class="verhorario btn btn-sm btn-success"><i class="fa fa-pencil-square-o"></i> Ver Horario</button>
                   <button data-id="'.$key['id'].'" class="delhorario btn btn-sm btn-danger"><i class="fa fa-times"></i> Eliminar</button>
