@@ -123,8 +123,8 @@ require_once'horario/include/functions.php';
         <form id="taskfrm">
             <label>Tipo de Identificación</label>
         <select class="form-control" id="tipoid">
-              <option value="cedula">Cédula</option>
-              <option value="ti">Tarjeta de Identidad</option>
+              <option value="cédula">Cédula</option>
+              <option value="Tarjeta de Identidad">Tarjeta de Identidad</option>
               
            </select>
             <label>EPS a la que pertenece</label>

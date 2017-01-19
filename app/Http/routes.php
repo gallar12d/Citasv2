@@ -70,6 +70,8 @@ Route::post('/api/v13/agendamiento/creacionagenda',
 'AgendadoctorController@creacionagenda');
 Route::post('/api/v13/agendamiento/insertaragenda',
 'AgendadoctorController@insertaragenda');
+Route::post('/api/v13/reservas/creareserva',
+'HorarioreservaController@crearReserva');
 Route::get('/lista','AgendadoctorController@lista');
 Route::get('/salir', function(){
 

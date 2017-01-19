@@ -9,5 +9,5 @@ class HorarioReserva extends Model
     //public $timestamps = false;
     protected $table = 'horarioreserva';
     protected $primarykey = 'id';
-    protected $fillable = ['identificacion','nombres', 'apellidos', 'fechareserva', 'horareserva'];
+    protected $fillable = ['tipoid','identificacion', 'eps','nombres', 'apellidos', 'direccion', 'telefono', 'idhorario', 'fechareserva', 'horareserva'];
 }

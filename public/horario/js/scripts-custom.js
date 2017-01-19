@@ -15,8 +15,27 @@ function guardarReserva(tipoid, eps, numeroid, nombres, apellidos, direccion, te
 
 
 
-    alert(tipoid)
+    // alert(tipoid+eps+numeroid+nombres+apellidos+eldia+elidhorario)
+     // alert()
     // alert(eps)  numeroid, nombres, eldia, elidhorario);
+
+    $.ajax({
+        url: '/api/v13/reservas/creareserva',
+        type: 'POST',
+        // dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
+        data: {tipoid: tipoid, eps: eps, numeroid: numeroid, nombres: nombres, apellidos: apellidos, direccion: direccion, telefono: telefono, eldia: eldia, elidhorario: elidhorario}
+    })
+    .done(function(data) {
+        console.log(data)
+        alert(data);
+    })
+    .fail(function() {
+        console.log("error");
+    })
+    .always(function() {
+        console.log("complete");
+    });
+    
 }
 
 function testlogin() {
@@ -302,7 +321,7 @@ $('.verhorario').on('click', function() {
                   setTimeout(function() {
                      $('#ViewHorario').modal('toggle');
                   }, 1000);
-                  window.location.href = '/lista';
+                  // window.location.href = '/lista';
                },
                error: function() {
                   novalid();
