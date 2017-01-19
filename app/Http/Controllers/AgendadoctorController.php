@@ -204,7 +204,7 @@ echo '</tbody></table>
 <input type="hidden" id="nombreinput" value="'.$_POST['nombre'].'">
 
 <button class="guardarhorario btn btn-lg btn-warning pull-right"><i class="fa fa-floppy-o"></i> Guardar</button>
-<button type="button" class="canceltask btn btn-danger" data-dismiss="modal" data-backdrop="false"><i class="fa fa-times"></i> Cancelar</button>
+<button type="button"  id ="canceltask"class="canceltask btn btn-danger" data-dismiss="modal" data-backdrop="false"><i class="fa fa-times"></i> Cancelar</button>
 
 
 

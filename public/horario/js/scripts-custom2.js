@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
    // todas las funciones despues de que el documento esté listo
    //$( "#listaHorarios .panel-body" ).append( " <?php if (isset($_GET['page'])){ horariostable($_GET['page'], 1);} else{ horariostable(1, 1); } ?>" );
    // $('#contenthere').load('phpfilehere.php');
@@ -9,6 +10,8 @@ function testlogin() {
                    type: 'GET',
   });
 }
+
+
  var promise = testlogin();
                        var islogin = promise.success(function (data) {
                          // alert(data)

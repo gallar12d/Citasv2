@@ -9,6 +9,7 @@ function novalid(){
 
 $(document).ready(function() {
   $(window).load(function() {
+  
 //=============================================================================
 var curr = new Date; // get current date
 var first = curr.getDate() - curr.getDay() + 1; // First day is the day of the month - the day of the week

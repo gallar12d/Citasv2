@@ -22,6 +22,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('demo2/css/prism.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('demo2/css/calendar-style.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('src2/css/pignose.calendar.css') }}" />
+     <!-- <script src="{{ asset('js/sweetalert.min.js') }}"></script> -->
+  
+
     <style type="text/css">
         @import url(https://fonts.googleapis.com/css?family=Raleway);
         @import url(https://fonts.googleapis.com/css?family=Open+Sans);
@@ -917,6 +920,8 @@ AngularJS Application Scripts
     });
     //]]>
     </script>
+    <script src="{{ asset('js/sweetalert.min.js') }}"></script>
+   
 
 
 

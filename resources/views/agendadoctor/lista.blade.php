@@ -15,6 +15,7 @@ require_once'horario/include/functions.php';
     <link href='https://fonts.googleapis.com/css?family=Maven+Pro' rel='stylesheet' type='text/css'>
     <link href="{{ asset('horario/style.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="{{ asset('css/sweetalert.css') }}">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -127,7 +128,7 @@ require_once'horario/include/functions.php';
               
            </select>
             <label>EPS a la que pertenece</label>
-        <select class="form-control" id="tipoid">
+        <select class="form-control" id="eps">
               @foreach($afiliaciones as $afiliacion)
      <option id="{{ $afiliacion->codigo_empresa }}" value="{{ $afiliacion->nombre }} ">{{ $afiliacion->nombre}} </option>
     @endforeach
@@ -187,6 +188,7 @@ require_once'horario/include/functions.php';
     <!-- script -->
     <script src="{{ asset('horario/js/scripts-custom.js') }}"></script>
      <script src="{{ asset('horario/js/scripts-custom2.js') }}"></script>
+     <script src="{{ asset('js/sweetalert.min.js') }}"></script>
 
   </body>
 </html>
